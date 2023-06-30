@@ -19,3 +19,4 @@ eksctl create cluster --name $CLUSTER --region $REGION --zones $ZONAS --node-typ
 ```shell
 aws eks update-kubeconfig --name $CLUSTER --region $REGION
 ```
+
