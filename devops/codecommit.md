@@ -1,7 +1,7 @@
 # Prácticas Devops en Amazon Web Services (AWS)
 ## AWS Code Commit
 
-### Para interactuar con el repositorio sin necesidad de ingresar contraseñas puedes utilizar una clave SSH
+### Prepara tu Sistema Operativo {#prepara-tu-sistema-operativo}
 #### Crea una nueva clave dejando los valores por defecto
 ```shell
 ssh-keygen -t rsa -b 4096 -f ~/.ssh/codecommit_rsa
@@ -31,7 +31,7 @@ EOF
 ```shell
 touch ~/.ssh/config
 ```
-## Crea un repositorio en AWS Code Commit para alojar el código de nuestra aplicación cloud native
+## Crea tu primer repositorio {#crea-tu-primer-repositorio}
 ```shell
 cat << EOF > crear_repo.sh
 #!/bin/bash
@@ -46,7 +46,7 @@ EOF
 chmod +x crear_repo.sh && ./crear_repo.sh
 ```
 
-## Clona el repositorio para comenzar comenzar a agregar el código de aplicación
+## Sube código {#sube-codigo}
 ```shell
 git clone ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/mi-repositorio
 ```
@@ -72,3 +72,5 @@ git push origin main
 
 ```
 ## Ya puedes interactuar con AWS Code Commit. Felicitaciones!
+
+[Volver](indice.md)

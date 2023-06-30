@@ -19,11 +19,11 @@ aws configure
 ```
 
 ## [AWS Code Commit](codecommit.md)
-### Prepara tu sistema operativo
-### Crea tu primer repositorio
-### Sube código
+### [Prepara tu sistema operativo](codecommit.md#prepara-tu-sistema-operativo)
+### [Crea tu primer repositorio](codecommit.md#crea-tu-primer-repositorio)
+### [Sube código](codecommit.md#sube-codigo)
 
 ## [AWS EKS](eks.md)
-### Despliega un cluster
-### Configura el acceso programático
+### [Despliega un cluster](eks.md#despliega-un-cluster-eks)
+### [Configura el acceso programático](eks.md#configura-el-acceso-programatico)
 ### Depliega una aplicación
