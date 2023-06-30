@@ -13,5 +13,21 @@
 
 - Docker/Podman: Docker es una plataforma para desarrollar, enviar y ejecutar aplicaciones en contenedores y Podman es compatible con los estándares OCI, lo que significa que puedes trabajar con imágenes y contenedores en formato OCI. Esto permite una interoperabilidad fluida con otras herramientas y plataformas que también siguen estos estándares.
 
+## Configura las credenciales programáticas ejecutando
+aws configure
+
 ## Instancia un cluster EKS Elastic Kubernetes Service
-- eksctl create cluster --name devops-aws --region us-east-1 --zones us-east-1a,us-east-1b,us-east-1c --node-type t2.micro
+eksctl create cluster --name cluster-eks --region us-east-1 --zones us-east-1a,us-east-1b,us-east-1c --node-type t2.micro
+
+## Creamos un repositorio para alojar el código que correrá sobre el cluster de Kubernetes
+### Esta vez lo crearemos mediante un script
+cat << EOF > crear_repo.sh
+#!/bin/bash
+
+repo_name="mi-repositorio"
+aws codecommit create-repository --repository-name $repo_name
+EOF
+
+### Modificamos los permisos y lo ejecutamos
+chmod +x crear_repo.sh && ./crear_repo.sh
+
