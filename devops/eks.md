@@ -1,7 +1,7 @@
 # Prácticas Devops en Amazon Web Services (AWS)
 ## Amazon Elastic Kubernetes Service (EKS)
 
-## Despliega un cluster EKS {#despliega-un-cluster-eks}
+## Despliega un cluster EKS
 
 ### Configura variables para facilitar la reutilización
 ```shell
@@ -15,7 +15,7 @@ export TIPO_INSTANCIA='t2.micro'
 ```shell
 eksctl create cluster --name $CLUSTER --region $REGION --zones $ZONAS --node-type $TIPO_INSTANCIA
 ```
-## Configura el acceso programático {#configura-el-acceso-programatico}
+## Configura el kubeconfig
 ```shell
 aws eks update-kubeconfig --name $CLUSTER --region $REGION
 ```

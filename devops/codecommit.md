@@ -1,7 +1,7 @@
 # Prácticas Devops en Amazon Web Services (AWS)
 ## AWS Code Commit
 
-### Prepara tu Sistema Operativo {#prepara-tu-sistema-operativo}
+### Prepara tu Sistema Operativo
 #### Crea una nueva clave dejando los valores por defecto
 ```shell
 ssh-keygen -t rsa -b 4096 -f ~/.ssh/codecommit_rsa
@@ -31,7 +31,7 @@ EOF
 ```shell
 touch ~/.ssh/config
 ```
-## Crea tu primer repositorio {#crea-tu-primer-repositorio}
+## Crea tu primer repositorio
 ```shell
 cat << EOF > crear_repo.sh
 #!/bin/bash
