@@ -46,7 +46,7 @@ EOF
 chmod +x crear_repo.sh && ./crear_repo.sh
 ```
 
-## Sube código {#sube-codigo}
+## Sube código
 ```shell
 git clone ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/mi-repositorio
 ```
