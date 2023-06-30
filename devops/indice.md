@@ -21,7 +21,7 @@ aws configure
 ## [AWS Code Commit](codecommit.md)
 ### [Prepara tu sistema operativo](codecommit.md#prepara-tu-sistema-operativo)
 ### [Crea tu primer repositorio](codecommit.md#crea-tu-primer-repositorio)
-### [Sube código](codecommit.md#sube-codigo)
+### [Sube código](codecommit.md#Sube código)
 
 ## [AWS EKS](eks.md)
 ### [Despliega un cluster](eks.md#despliega-un-cluster-eks)
