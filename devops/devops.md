@@ -69,7 +69,7 @@ EOF
 ```shell
 touch ~/.ssh/config
 ```
-## Clona el repositorio para comenzar comenzar a agregar el código de nuestra aplicación
+## Clona el repositorio para comenzar comenzar a agregar el código de aplicación
 ```shell
 git clone ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/mi-repositorio
 ```
