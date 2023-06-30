@@ -34,7 +34,7 @@ aws codecommit create-repository --repository-name $NOMBRE_REPO
 EOF
 ```
 
-### Modificamos los permisos y lo ejecutamos
+### Modifica los permisos y ejecuta el script
 ```shell
 chmod +x crear_repo.sh && ./crear_repo.sh
 ```
