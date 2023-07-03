@@ -1,13 +1,13 @@
 # Prácticas Devops en Amazon Web Services (AWS)
 
 ## Herramientas requeridas
-- Soliciat una AWS Sandbox de [A Cloud Guru](https://learn.acloud.guru/cloud-playground/cloud-sandboxes).
+- Solicita una AWS Sandbox de [A Cloud Guru](https://learn.acloud.guru/cloud-playground/cloud-sandboxes).
 - Loguéate y abre una terminal AWS CloudShell.
 - Configura el acceso programático tomando las credenciales de la bienvenida a AWS Sandbox y la región de la AWS Management Console (Ej: us-east-1).
 ```shell
 aws configure
 ```
-- Desde la AWS CloudShell clona el repositorio e instala las herramientas de forma automatizada
+- Clona el repositorio e instala las herramientas de forma automatizada
 ```shell
 git clone https://github.com/patricio-chavez/entrenamientos-aws.git $HOME/entrenamientos-awscd $HOME/entrenamientos-aws/devops/scripts
 chmod +x && ./prepara-cloudshell.sh
