@@ -98,4 +98,6 @@ git commit -m "README agregado"
 echo "Realizando el push al repositorio remoto..."
 git push origin main
 
+cd -
+
 echo "Proceso de configuración para CodeCommit completado."
