@@ -6,7 +6,6 @@
 #### Para evitar el uso de credenciales personales define un nuevo usuario siguiendo el principio de menores privilegios
 ```shell
 aws iam create-user --user-name cloud_automation
-
 ```
 
 #### IAM te mostrará gráficamente el usuario y puede navegar entre las opciones para comprobar que aún no tiene ningún privilegio
@@ -14,5 +13,18 @@ aws iam create-user --user-name cloud_automation
 <div align="center">
   <img src="imagenes/usuario_cloud_automation.png" alt="Usuario cloud_automation">
 </div>
+
+### Configura el acceso programático
+#### Aprovecha la salida para guardar las llaves en variables
+```shell
+OUTPUT=$(aws iam create-access-key --user-name cloud_automation --query 'AccessKey.[AccessKeyId,SecretAccessKey]' --output text)
+read -r ACCESSKEYID SECRETACCESSKEY <<< "$OUTPUT"
+
+# Imprimo los valores solamente para verificar, en Producción no es recomendable mostrar las claves
+echo "Access Key ID: $ACCESSKEYID"
+echo "Secret Access Key: $SECRETACCESSKEY"
+```
+
+
 
 [Volver](indice.md)

@@ -31,6 +31,7 @@ chmod +x prepara-cloudshell.sh && ./prepara-cloudshell.sh && cd $HOME
 
 ## [AWS Identity and Access Management](iam.md)
 ### [Crea el usuario cloud_automation](iam.md#Crea-el-usuario-cloud_automation)
+### [Configura el acceso programático](iam.md#Configura-el-acceso-programático)
 
 ## [AWS Secrets Manager](secretsmanager.md)
 ### [Resguardo de credenciales](secretsmanager.md#Resguardo-de-credenciales)
