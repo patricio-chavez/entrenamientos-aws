@@ -4,7 +4,7 @@
 - Solicita una AWS Sandbox de [A Cloud Guru](https://learn.acloud.guru/cloud-playground/cloud-sandboxes).
 - Loguéate y abre una terminal AWS CloudShell.
 <p align="center">
-  <img src="imagenes/iniciar-cloudshell.png" alt="AWS CloudShell">
+  <img src="imagenes/iniciar-cloudshell.png" alt="AWS CloudShell" />
 </p>
 - Configura el acceso programático tomando las credenciales de la bienvenida a AWS Sandbox y la región de la AWS Management Console (Ej: us-east-1).
 ```shell
