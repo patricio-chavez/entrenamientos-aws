@@ -22,9 +22,14 @@ echo $SSHKEYID
 ```shell
 cat << EOF >> ~/.ssh/config
 Host git-codecommit.*.amazonaws.com
-  User $SSHKEYID
-  IdentityFile ~/.ssh/codecommit_rsa
+User $SSHKEYID
+IdentityFile ~/.ssh/codecommit_rsa
 EOF
+```
+
+#### Limita los permisos sobre el archivo
+```shell
+chmod 600 ~/.ssh/config
 ```
 
 #### (OPCIONAL) En caso de no existir previamente se puede crear y luego agregar las líneas descriptas
