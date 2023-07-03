@@ -53,6 +53,13 @@ EOF
 chmod +x crear_repo.sh && ./crear_repo.sh
 ```
 
+El resultado desde AWS CodeCommit lucirá similar a la siguiente imagen
+
+<div align="center">
+  <img src="imagenes/primer-repo.png.png" alt="Primer AWS CodeCommit Repo">
+</div>
+
+
 ## Sube código
 ```shell
 git clone ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/mi-repositorio
