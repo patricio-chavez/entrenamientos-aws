@@ -18,11 +18,11 @@ aws iam create-user --user-name cloud_automation
 #### Aprovecha la salida para guardar las llaves en variables
 ```shell
 OUTPUT=$(aws iam create-access-key --user-name cloud_automation --query 'AccessKey.[AccessKeyId,SecretAccessKey]' --output text)
-read -r ACCESSKEYID SECRETACCESSKEY <<< "$OUTPUT"
+read -r ACCESS_KEY_ID SECRET_ACCESS_KEY <<< "$OUTPUT"
 
 # Imprimo los valores solamente para verificar, en Producción no es recomendable mostrar las claves
-echo "Access Key ID: $ACCESSKEYID"
-echo "Secret Access Key: $SECRETACCESSKEY"
+echo "Access Key ID: $ACCESS_KEY_ID"
+echo "Secret Access Key: $SECRET_ACCESS_KEY"
 ```
 
 <div align="center">
