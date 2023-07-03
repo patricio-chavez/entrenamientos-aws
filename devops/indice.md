@@ -14,7 +14,7 @@ chmod +x prepara-cloudshell.sh && ./prepara-cloudshell.sh
 ```
 
 ## [AWS Code Commit](codecommit.md)
-### [Prepara tu sistema operativo](codecommit.md#Prepara-tu-Sistema-Operativo)
+### [Prepara el sistema operativo](codecommit.md#Prepara-el-sistema-operativo)
 ### [Crea tu primer repositorio](codecommit.md#Crea-tu-primer-repositorio)
 ### [Sube código](codecommit.md#Sube-código)
 

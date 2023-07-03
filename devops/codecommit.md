@@ -1,10 +1,10 @@
 # Prácticas Devops en Amazon Web Services (AWS)
 ## AWS Code Commit
 
-### Prepara tu Sistema Operativo
+### Prepara el sistema operativo
 #### Crea una nueva clave dejando los valores por defecto
 ```shell
-ssh-keygen -t rsa -b 4096 -f ~/.ssh/codecommit_rsa
+ssh-keygen -q -t rsa -b 4096 -f ~/.ssh/codecommit_rsa
 ```
 
 #### Sube la clave a AWS IAM teniendo en cuenta el usuario con el que ingresas a AWS, para este ejemplo, cloud_user
