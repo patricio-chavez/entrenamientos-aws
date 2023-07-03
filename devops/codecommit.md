@@ -32,10 +32,6 @@ EOF
 chmod 600 ~/.ssh/config
 ```
 
-#### (OPCIONAL) En caso de no existir previamente se puede crear y luego agregar las líneas descriptas
-```shell
-touch ~/.ssh/config
-```
 ## Crea tu primer repositorio
 ```shell
 cat << EOF > crear_repo.sh

@@ -19,6 +19,10 @@ sudo mv /tmp/eksctl /usr/local/bin
 echo "Versión de eksctl instalada:"
 eksctl version
 
+# Configura usuario de git
+git config --global user.email "$(whoami)@entrenamientos-aws.com"
+git config --global user.name "$(whoami)"
+
 # Inicia el entrenamiento desde el HOME
 cd $HOME
 echo "Ya está todo preparado para que empieces a entrenar!"

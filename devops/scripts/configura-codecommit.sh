@@ -39,6 +39,8 @@ User $SSHKEYID
 IdentityFile ~/.ssh/codecommit_rsa
 EOF
 
+chmod 600 ~/.ssh/config
+
 echo "Configuración agregada correctamente al archivo ~/.ssh/config."
 
 # Crear un repositorio en CodeCommit
