@@ -16,6 +16,13 @@ fi
 echo "Eliminando configuración del archivo ~/.ssh/config..."
 sed -i '/Host git-codecommit.*.amazonaws.com/,/IdentityFile/d' ~/.ssh/config
 
+# Verificar si la eliminación fue exitosa
+if [ $? -eq 0 ]; then
+  echo "Configuración eliminada correctamente del archivo ~/.ssh/config."
+else
+  echo "Error al eliminar la configuración del archivo ~/.ssh/config."
+fi
+
 # Eliminar clave pública de AWS IAM
 echo "Eliminando clave pública de AWS IAM..."
 export SSHKEYID=$(aws iam list-ssh-public-keys --user-name cloud_user | grep -oP '(?<="SSHPublicKeyId": ")[^"]+' | awk 'NR==1')
@@ -31,5 +38,12 @@ fi
 # Eliminar clave SSH y clave pública local
 echo "Eliminando clave SSH y clave pública local..."
 rm -f ~/.ssh/codecommit_rsa ~/.ssh/codecommit_rsa.pub
+
+# Verificar si la eliminación fue exitosa
+if [ $? -eq 0 ]; then
+  echo "Clave SSH y clave pública local eliminadas correctamente."
+else
+  echo "Error al eliminar la clave SSH y clave pública local."
+fi
 
 echo "Proceso de eliminación de configuración para CodeCommit completado."
