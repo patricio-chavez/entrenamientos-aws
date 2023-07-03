@@ -24,23 +24,23 @@ chmod +x prepara-cloudshell.sh && ./prepara-cloudshell.sh && cd $HOME
 
 ```
 
-## [AWS Code Commit](codecommit.md)
-- ### [Prepara el sistema operativo](codecommit.md#Prepara-el-sistema-operativo)
-- ### [Crea tu primer repositorio](codecommit.md#Crea-tu-primer-repositorio)
-- ### [Sube código](codecommit.md#Sube-código)
+### [AWS Code Commit](codecommit.md)
+- #### [Prepara el sistema operativo](codecommit.md#Prepara-el-sistema-operativo)
+- #### [Crea tu primer repositorio](codecommit.md#Crea-tu-primer-repositorio)
+- #### [Sube código](codecommit.md#Sube-código)
 
-## [AWS Identity and Access Management](iam.md)
-### [Crea el usuario cloud_automation](iam.md#Crea-el-usuario-cloud_automation)
-### [Configura el acceso programático](iam.md#Configura-el-acceso-programático)
+### [AWS Identity and Access Management](iam.md)
+- #### [Crea el usuario cloud_automation](iam.md#Crea-el-usuario-cloud_automation)
+- #### [Configura el acceso programático](iam.md#Configura-el-acceso-programático)
 
-## [AWS Secrets Manager](secretsmanager.md)
-### [Resguarda credenciales](secretsmanager.md#Resguarda-credenciales)
-### [Recupera credenciales](secretsmanager.md#Resguarda-recupera)
+### [AWS Secrets Manager](secretsmanager.md)
+- #### [Resguarda credenciales](secretsmanager.md#Resguarda-credenciales)
+- #### [Recupera credenciales](secretsmanager.md#Resguarda-recupera)
 
-## [AWS CloudFormation](cloudformation.md)
-### [Primera plantilla](cloudformation.md#Primera-plantilla)
+### [AWS CloudFormation](cloudformation.md)
+- #### [Primera plantilla](cloudformation.md#Primera-plantilla)
 
-## [AWS EKS](eks.md)
-### [Despliega un cluster](eks.md#Despliega-un-cluster-EKS)
-### [Configura el acceso programático](eks.md#Configura-el-kubeconfig)
-### Depliega una aplicación
+### [AWS EKS](eks.md)
+- #### [Despliega un cluster](eks.md#Despliega-un-cluster-EKS)
+- #### [Configura el acceso programático](eks.md#Configura-el-kubeconfig)
+- #### Depliega una aplicación
