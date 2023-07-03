@@ -18,6 +18,9 @@ SALIDA=$(aws iam create-access-key --user-name cloud_automation --query 'AccessK
 read -r ACCESS_KEY_ID SECRET_ACCESS_KEY <<< "$SALIDA"
 
 # Imprimo los valores solamente para verificar, en Producción no es recomendable mostrar las claves
+export ACCESS_KEY_ID=$ACCESS_KEY_ID
+export SECRET_ACCESS_KEY=$SECRET_ACCESS_KEY
+
 echo "Access Key ID: $ACCESS_KEY_ID"
 echo "Secret Access Key: $SECRET_ACCESS_KEY"
 
