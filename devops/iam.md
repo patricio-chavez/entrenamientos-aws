@@ -29,5 +29,10 @@ echo "Secret Access Key: $SECRETACCESSKEY"
   <img src="imagenes/llaves-cloud_automation.png" alt="Llaves usuario cloud_automation">
 </div>
 
+### Importante: No es posible recuperar la Secret Access Key
+### Si por algún motivo no pudiste guardar las llaves en las variables, no te preocupes, bórrala y configura nuevamente el acceso programático
+```shell
+aws iam delete-access-key --user-name cloud_automation --access-key-id $(aws iam list-access-keys --user-name cloud_automation | jq -r '.AccessKeyMetadata[0].AccessKeyId'
+```
 
 [Volver](indice.md)
