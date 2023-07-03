@@ -2,7 +2,7 @@
 
 # Generar clave SSH
 echo "Generando clave SSH..."
-ssh-keygen -t rsa -b 4096 -f ~/.ssh/codecommit_rsa
+ssh-keygen -q -t rsa -b 4096 -f ~/.ssh/codecommit_rsa -N ""
 
 # Verificar si la generación fue exitosa
 if [ $? -eq 0 ]; then
@@ -53,3 +53,45 @@ else
   echo "Error al crear el repositorio en CodeCommit."
   exit 1
 fi
+
+# Clonar el repositorio
+echo "Clonando el repositorio..."
+cd $HOME && git clone ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/$NOMBRE_REPO
+
+# Verificar si el clonado fue exitoso
+if [ $? -eq 0 ]; then
+  echo "Clonado del repositorio exitoso."
+else
+  echo "Error al clonar el repositorio."
+  exit 1
+fi
+
+# Cambiar al directorio del repositorio
+echo "Cambiando al directorio del repositorio..."
+cd $NOMBRE_REPO
+
+# Crear archivo README.md
+echo "Creando archivo README.md..."
+cat << EOF > README.md
+Código de mi increíble aplicación que correrá en Kubernetes!"
+EOF
+
+echo "Archivo README.md creado correctamente."
+
+# Añadir README.md al repositorio
+echo "Añadiendo README.md al repositorio..."
+git add README.md
+
+# Realizar el commit
+echo "Realizando commit..."
+git commit -m "README agregado"
+
+# Verificar el estado del repositorio
+echo "Verificando el estado del repositorio..."
+git status
+
+# Realizar el push al repositorio remoto
+echo "Realizando el push al repositorio remoto..."
+git push origin main
+
+echo "Proceso de configuración para CodeCommit completado."
