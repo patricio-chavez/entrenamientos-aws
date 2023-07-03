@@ -6,6 +6,6 @@ export NOMBRE_SECRETO=credenciales-automation-$NUMERO_ALEATORIO
 aws secretsmanager create-secret --name $NOMBRE_SECRETO --secret-string '{"ACCESS_KEY_ID": "'"$ACCESS_KEY_ID"'", "SECRET_ACCESS_KEY": "'"$SECRET_ACCESS_KEY"'"}'
 
 # Recuperar las credenciales en un secreto
-aws secretsmanager get-secret-value --secret-id NOMBRE_SECRETO
+aws secretsmanager get-secret-value --secret-id $NOMBRE_SECRETO
 
 echo "Proceso de preparación de AWS Secrets Manager completado."
