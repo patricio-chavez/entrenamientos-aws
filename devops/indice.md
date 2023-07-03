@@ -3,7 +3,7 @@
 ## Herramientas requeridas
 - Accede a una AWS Sandbox de [A Cloud Guru](https://learn.acloud.guru/cloud-playground/cloud-sandboxes).
 - Loguéate y abre una terminal CloudShell.
-- Configura las credenciales de acceso programático tomando la Access y Secret Key de la información de la bienvenida a AWS Sandbox y la región de la Cloud Console (Ej: us-east-1).
+- Configura las credenciales de acceso programático tomando las Access Key y Access Secret Key de la información de la bienvenida a AWS Sandbox y la región de la Cloud Console (Ej: us-east-1).
 ```shell
 aws configure
 ```
