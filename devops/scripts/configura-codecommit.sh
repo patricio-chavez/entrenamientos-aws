@@ -59,7 +59,7 @@ fi
 # Clonar el repositorio
 echo "Clonando el repositorio..."
 rm -Rf $HOME/mi-repositorio
-cd $HOME && sleep 5
+cd $HOME && sleep 10
 yes | git clone ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/$NOMBRE_REPO
 
 # Verificar si el clonado fue exitoso
