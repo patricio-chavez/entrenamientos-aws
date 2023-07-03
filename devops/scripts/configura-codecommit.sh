@@ -2,7 +2,7 @@
 
 # Generar clave SSH
 echo "Generando clave SSH..."
-ssh-keygen -t rsa -b 4096 -f ~/.ssh/codecommit_rsa -N ""
+ssh-keygen -q -t rsa -b 4096 -f ~/.ssh/codecommit_rsa -N ""
 
 # Verificar si la generación fue exitosa
 if [ $? -eq 0 ]; then
