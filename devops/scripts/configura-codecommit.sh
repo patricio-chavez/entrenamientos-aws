@@ -58,7 +58,7 @@ fi
 
 # Clonar el repositorio
 echo "Clonando el repositorio..."
-cd $HOME && git clone ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/$NOMBRE_REPO
+cd $HOME && yes | git clone ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/$NOMBRE_REPO
 
 # Verificar si el clonado fue exitoso
 if [ $? -eq 0 ]; then
@@ -80,6 +80,9 @@ EOF
 
 echo "Archivo README.md creado correctamente."
 
+# Añadir rama main
+git checkout -b main
+
 # Añadir README.md al repositorio
 echo "Añadiendo README.md al repositorio..."
 git add README.md
@@ -87,10 +90,6 @@ git add README.md
 # Realizar el commit
 echo "Realizando commit..."
 git commit -m "README agregado"
-
-# Verificar el estado del repositorio
-echo "Verificando el estado del repositorio..."
-git status
 
 # Realizar el push al repositorio remoto
 echo "Realizando el push al repositorio remoto..."

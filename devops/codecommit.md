@@ -66,9 +66,9 @@ EOF
 
 ## Sube el fichero a AWS Code Commit
 ```shell
+git checkout -b main
 git add README.md
 git commit -m "README agregado"
-git status
 git push origin main
 
 ```
