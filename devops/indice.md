@@ -7,12 +7,11 @@
 ```shell
 aws configure
 ```
-
-- eksctl: eksctl es una herramienta de línea de comandos para crear, gestionar y operar clústeres de Amazon Elastic Kubernetes Service (EKS). Simplifica el proceso de creación y administración de clústeres EKS. Puedes instalar eksctl siguiendo las instrucciones en la documentación oficial de [eksctl](https://eksctl.io/).
-
-- Helm: Un gestor de paquetes para Kubernetes que facilita la implementación y gestión de aplicaciones en clústeres de Kubernetes. Puedes instalar helm desde el sitio oficial de [HELM](https://helm.sh/docs/intro/install/).
-
-- Docker/Podman: Docker es una plataforma para desarrollar, enviar y ejecutar aplicaciones en contenedores y Podman es compatible con los estándares OCI, lo que significa que puedes trabajar con imágenes y contenedores en formato OCI. Esto permite una interoperabilidad fluida con otras herramientas y plataformas que también siguen estos estándares. Para instalar cada una de estas herramientas te puede dirigiar a [Docker](https://docs.docker.com/get-docker/) y/o [Podman](https://podman.io/docs/installation).
+- Desde la AWS CloudShell clona el repositorio e instala las herramientas de forma automatizada
+```shell
+git clone https://github.com/patricio-chavez/entrenamientos-aws.git $HOME/entrenamientos-awscd $HOME/entrenamientos-aws/devops/scripts
+chmod +x && ./prepara-cloudshell.sh
+```
 
 ## [AWS Code Commit](codecommit.md)
 ### [Prepara tu sistema operativo](codecommit.md#Prepara-tu-Sistema-Operativo)

@@ -18,3 +18,7 @@ sudo mv /tmp/eksctl /usr/local/bin
 # Verifica la versión de eksctl instalada
 echo "Versión de eksctl instalada:"
 eksctl version
+
+# Inicia el entrenamiento desde el HOME
+cd $HOME
+echo "Ya está todo preparado para que empieces a entrenar!"
