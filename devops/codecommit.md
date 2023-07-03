@@ -12,7 +12,7 @@ ssh-keygen -t rsa -b 4096 -f ~/.ssh/codecommit_rsa
 aws iam upload-ssh-public-key --user-name cloud_user --ssh-public-key-body file://~/.ssh/codecommit_rsa.pub
 ```
 
-Si deseas verificar el resultado en la AWS Management Console dirígete a IAM -> Usuarios -> cloud_user -> Credenciales de seguridad -> Claves públicas SSH para AWS CodeCommit 
+# Si deseas verificar el resultado en la AWS Management Console dirígete a IAM > Usuarios > cloud_user > Credenciales de seguridad > Claves públicas SSH para AWS CodeCommit 
 
 <div align="center">
   <img src="imagenes/clave-ssh-codecommit.png" alt="Clave SSH para CodecCommit">
@@ -53,7 +53,7 @@ EOF
 chmod +x crear_repo.sh && ./crear_repo.sh
 ```
 
-El resultado desde AWS CodeCommit lucirá similar a la siguiente imagen
+# Deberías ver el repositorio también desde la AWS Management Console
 
 <div align="center">
   <img src="imagenes/primer-repo.png" alt="Primer AWS CodeCommit Repo">
@@ -85,7 +85,7 @@ git commit -m "README agregado"
 git push origin main
 ```
 
-Finalmente puedes comprobar que subiste el código
+# Finalmente puedes comprobar como luce tu primer repo
 
 <div align="center">
   <img src="imagenes/repo-con-readme.png" alt="Primer AWS CodeCommit Repo con README.md">

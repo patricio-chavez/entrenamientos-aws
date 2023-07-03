@@ -29,6 +29,15 @@ chmod +x prepara-cloudshell.sh && ./prepara-cloudshell.sh && cd $HOME
 ### [Crea tu primer repositorio](codecommit.md#Crea-tu-primer-repositorio)
 ### [Sube código](codecommit.md#Sube-código)
 
+## [AWS Identity and Access Management](iam.md)
+### [Crea el usuario cloud_automation](iam.md#Crea-el-usuario-cloud_automation)
+
+## [AWS Secrets Manager](secretsmanager.md)
+### [Resguardo de credenciales](secretsmanager.md#Resguardo-de-credenciales)
+
+## [AWS CloudFormation](cloudformation.md)
+### [Primera plantilla](cloudformation.md#Primera-plantilla)
+
 ## [AWS EKS](eks.md)
 ### [Despliega un cluster](eks.md#Despliega-un-cluster-EKS)
 ### [Configura el acceso programático](eks.md#Configura-el-kubeconfig)
