@@ -15,7 +15,7 @@ aws iam upload-ssh-public-key --user-name cloud_user --ssh-public-key-body file:
 ** Comprobación gráfica ** Si deseas verificar en la AWS Management Console dirígete a IAM -> Usuarios -> cloud_user -> Credenciales de seguridad -> Claves públicas SSH para AWS CodeCommit 
 
 <div align="center">
-  <img src="imagenes/clave-ssh-codecommit" alt="Clave SSH para CodecCommit">
+  <img src="imagenes/clave-ssh-codecommit.png" alt="Clave SSH para CodecCommit">
 </div>
 
 #### Exporta el ID de la clave pública de SSH ya que lo necesitaras para finalizar la configuración de acceso
