@@ -8,4 +8,6 @@ aws secretsmanager create-secret --name $NOMBRE_SECRETO --secret-string '{"ACCES
 # Recuperar las credenciales en un secreto
 aws secretsmanager get-secret-value --secret-id $NOMBRE_SECRETO
 
+cd $HOME/entrenamientos-aws/devops/scripts
+
 echo "Proceso de preparación de AWS Secrets Manager completado."

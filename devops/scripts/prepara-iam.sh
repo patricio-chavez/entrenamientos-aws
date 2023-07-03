@@ -24,4 +24,6 @@ export SECRET_ACCESS_KEY=$SECRET_ACCESS_KEY
 echo "Access Key ID: $ACCESS_KEY_ID"
 echo "Secret Access Key: $SECRET_ACCESS_KEY"
 
+cd $HOME/entrenamientos-aws/devops/scripts
+
 echo "Proceso de preparación de AWS IAM completado."

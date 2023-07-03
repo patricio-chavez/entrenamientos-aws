@@ -98,6 +98,6 @@ git commit -m "README agregado"
 echo "Realizando el push al repositorio remoto..."
 git push origin main
 
-cd -
+cd $HOME/entrenamientos-aws/devops/scripts
 
 echo "Proceso de configuración para CodeCommit completado."
