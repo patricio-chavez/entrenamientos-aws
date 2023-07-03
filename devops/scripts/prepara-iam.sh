@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Comando para crear un usuario en IAM
-NOMBRE_USUARIO="cloud_automation"
+export NOMBRE_USUARIO="cloud_automation"
 echo "Creando usuario en IAM: $NOMBRE_USUARIO"
 aws iam create-user --user-name $NOMBRE_USUARIO
 
