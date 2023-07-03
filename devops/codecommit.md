@@ -83,8 +83,14 @@ git checkout -b main
 git add README.md
 git commit -m "README agregado"
 git push origin main
-
 ```
+
+Finalmente puedes comprobar que subiste el código
+
+<div align="center">
+  <img src="imagenes/repo-con-readme.png" alt="Primer AWS CodeCommit Repo con README.md">
+</div>
+
 ## Ya puedes interactuar con AWS Code Commit. Felicitaciones!
 
 [Volver](indice.md)
