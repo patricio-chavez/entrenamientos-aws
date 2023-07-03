@@ -46,4 +46,7 @@ else
   echo "Error al eliminar la clave SSH y clave pública local."
 fi
 
+# Eliminar repositorio local
+rm -Rf $HOME/mi-repositorio
+
 echo "Proceso de eliminación de configuración para CodeCommit completado."
