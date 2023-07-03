@@ -10,7 +10,7 @@ aws configure
 - Clona el repositorio e instala las herramientas de forma automatizada
 ```shell
 git clone https://github.com/patricio-chavez/entrenamientos-aws.git && cd $HOME/entrenamientos-aws/devops/scripts
-chmod +x prepara-cloudshell.sh && ./prepara-cloudshell.sh
+chmod +x prepara-cloudshell.sh && ./prepara-cloudshell.sh && cd $HOME
 
 ```
 
