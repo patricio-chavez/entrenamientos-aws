@@ -20,6 +20,7 @@ echo "Versión de eksctl instalada:"
 eksctl version
 
 # Configura usuario de git
+echo "Configurando git..."
 git config --global user.email "$(whoami)@entrenamientos-aws.com"
 git config --global user.name "$(whoami)"
 
