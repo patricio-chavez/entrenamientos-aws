@@ -25,6 +25,9 @@ echo "Access Key ID: $ACCESSKEYID"
 echo "Secret Access Key: $SECRETACCESSKEY"
 ```
 
+<div align="center">
+  <img src="imagenes/llaves-cloud_automation.png" alt="Llaves usuario cloud_automation">
+</div>
 
 
 [Volver](indice.md)
