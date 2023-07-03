@@ -18,6 +18,7 @@ sed -i '/Host git-codecommit.*.amazonaws.com/,/IdentityFile/d' ~/.ssh/config
 
 # Eliminar clave pública de AWS IAM
 echo "Eliminando clave pública de AWS IAM..."
+export SSHKEYID=$(aws iam list-ssh-public-keys --user-name cloud_user | grep -oP '(?<="SSHPublicKeyId": ")[^"]+' | awk 'NR==1')
 aws iam delete-ssh-public-key --user-name cloud_user --ssh-public-key-id $SSHKEYID
 
 # Verificar si la eliminación fue exitosa
