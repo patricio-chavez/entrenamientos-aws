@@ -12,6 +12,12 @@ ssh-keygen -t rsa -b 4096 -f ~/.ssh/codecommit_rsa
 aws iam upload-ssh-public-key --user-name cloud_user --ssh-public-key-body file://~/.ssh/codecommit_rsa.pub
 ```
 
+** Comprobación gráfica ** Si deseas verificar en la AWS Management Console dirígete a IAM -> Usuarios -> cloud_user -> Credenciales de seguridad -> Claves públicas SSH para AWS CodeCommit 
+
+<div align="center">
+  <img src="imagenes/clave-ssh-codecommit" alt="Clave SSH para CodecCommit">
+</div>
+
 #### Exporta el ID de la clave pública de SSH ya que lo necesitaras para finalizar la configuración de acceso
 ```shell
 export SSHKEYID=$(aws iam list-ssh-public-keys --user-name cloud_user | grep -oP '(?<="SSHPublicKeyId": ")[^"]+' | awk 'NR==1')
