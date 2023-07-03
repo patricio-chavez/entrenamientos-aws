@@ -25,9 +25,9 @@ chmod +x prepara-cloudshell.sh && ./prepara-cloudshell.sh && cd $HOME
 ```
 
 ## [AWS Code Commit](codecommit.md)
-### [Prepara el sistema operativo](codecommit.md#Prepara-el-sistema-operativo)
-### [Crea tu primer repositorio](codecommit.md#Crea-tu-primer-repositorio)
-### [Sube código](codecommit.md#Sube-código)
+- ### [Prepara el sistema operativo](codecommit.md#Prepara-el-sistema-operativo)
+- ### [Crea tu primer repositorio](codecommit.md#Crea-tu-primer-repositorio)
+- ### [Sube código](codecommit.md#Sube-código)
 
 ## [AWS Identity and Access Management](iam.md)
 ### [Crea el usuario cloud_automation](iam.md#Crea-el-usuario-cloud_automation)
