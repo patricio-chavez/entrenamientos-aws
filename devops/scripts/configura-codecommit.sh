@@ -2,7 +2,7 @@
 
 # Generar clave SSH
 echo "Generando clave SSH..."
-ssh-keygen -q -t rsa -b 4096 -f ~/.ssh/codecommit_rsa -N ""
+ssh-keygen -t rsa -b 4096 -f ~/.ssh/codecommit_rsa -N ""
 
 # Verificar si la generación fue exitosa
 if [ $? -eq 0 ]; then
@@ -35,8 +35,8 @@ echo "SSHKEYID: $SSHKEYID"
 echo "Agregando configuración al archivo ~/.ssh/config..."
 cat << EOF >> ~/.ssh/config
 Host git-codecommit.*.amazonaws.com
-  User $SSHKEYID
-  IdentityFile ~/.ssh/codecommit_rsa
+User $SSHKEYID
+IdentityFile ~/.ssh/codecommit_rsa
 EOF
 
 echo "Configuración agregada correctamente al archivo ~/.ssh/config."
