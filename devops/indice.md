@@ -34,7 +34,8 @@ chmod +x prepara-cloudshell.sh && ./prepara-cloudshell.sh && cd $HOME
 ### [Configura el acceso programático](iam.md#Configura-el-acceso-programático)
 
 ## [AWS Secrets Manager](secretsmanager.md)
-### [Resguardo de credenciales](secretsmanager.md#Resguardo-de-credenciales)
+### [Resguarda credenciales](secretsmanager.md#Resguarda-credenciales)
+### [Recupera credenciales](secretsmanager.md#Resguarda-recupera)
 
 ## [AWS CloudFormation](cloudformation.md)
 ### [Primera plantilla](cloudformation.md#Primera-plantilla)

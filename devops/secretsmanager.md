@@ -2,7 +2,7 @@
 ## AWS Secrets Manager
 
 
-### Resguardo de credenciales
+### Resguarda credenciales
 #### Guarda las credenciales del usuario cloud_automation
 ```shell
 aws secretsmanager create-secret --name credenciales-pipeline --secret-string '{"ACCESS_KEY_ID": "'"$ACCESS_KEY_ID"'", "SECRET_ACCESS_KEY": "'"$SECRET_ACCESS_KEY"'"}'
@@ -12,6 +12,7 @@ aws secretsmanager create-secret --name credenciales-pipeline --secret-string '{
   <img src="imagenes/secreto-credenciales-pipeline.png" alt="Secreto Credenciales Pipeline">
 </div>
 
+### Recupera credenciales
 #### Es posible recuperar las credenciales programáticamente pero ten precaución de no exponerlas en forma innecesaria
 ```shell
 aws secretsmanager get-secret-value --secret-id credenciales-pipeline
