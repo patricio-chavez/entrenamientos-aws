@@ -113,7 +113,7 @@ Una vez que has creado tu repositorio en AWS Code Commit, puedes comenzar a subi
 git clone ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/mi-repositorio
 ```
 
-## Muévete al directorio
+### Muévete al directorio
 
 Navega hasta el directorio del repositorio clonado utilizando el siguiente comando
 
@@ -121,7 +121,7 @@ Navega hasta el directorio del repositorio clonado utilizando el siguiente coman
 cd mi-repositorio
 ```
 
-## Crea tu primer fichero
+### Crea tu primer fichero
 
 Crea un nuevo fichero llamado README.md y añade el contenido utilizando el siguiente comando:
 
@@ -131,7 +131,7 @@ Código de mi increíble aplicación que correrá en Kubernetes!"
 EOF
 ```
 
-## Sube el fichero a AWS Code Commit
+### Sube el fichero a AWS Code Commit
 
 Una vez que hayas creado tu primer fichero y estés listo para subirlo al repositorio en AWS Code Commit.
 Primero cambia a la rama principal main, luego agrega el fichero README.md al área de preparación, realiza un commit con un mensaje descriptivo y finalmente empuja los cambios. Todo esto puedes ejecutarlo con los siguientes comandos:
@@ -143,7 +143,7 @@ git commit -m "README agregado"
 git push origin main
 ```
 
-## Finalmente puedes comprobar como luce tu primer repo
+### Finalmente puedes comprobar como luce tu primer repo
 
 Después de haber subido el fichero README.md a tu repositorio en AWS Code Commit, puedes verificar visualmente cómo se ve tu repositorio. 
 
