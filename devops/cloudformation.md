@@ -14,12 +14,12 @@ En este ejemplo, vamos a crear dos variables: NOMBRE_CLUSTER y AWS_REGION. La va
 ```shell
 export NOMBRE_CLUSTER='mi-cluster-eks'
 export AWS_REGION='us-east-1'
+export ARN_ROL=''
 ```
 
 ### Describe la infrastructura en un fichero
 
 Puedes describir tu infraestructura utilizando un fichero YAML en AWS CloudFormation. El formato YAML es legible para humanos y te permite definir los recursos y configuraciones de tu infraestructura de manera estructurada. También puedes utilizar JSON para describir tu infraestructura en AWS CloudFormation. AWS CloudFormation admite tanto YAML como JSON como formatos de plantilla.
-
 
 ```shell
 cat << EOF > crear-namespace-cb.yaml
@@ -31,13 +31,13 @@ Resources:
     Properties:
       Name: CBAPPDemoCrearNS
       Description: Esta plantilla crea el espacio de nombres en el cluster EKS para la aplicaciñón de ejemplo
-      ServiceRole: arn:aws:iam::$ROL
+      ServiceRole: $ARN_ROL
       Artifacts:
         Type: no_artifacts
       Environment:
         Type: LINUX_CONTAINER
         ComputeType: BUILD_GENERAL1_SMALL
-        Image: aws/codebuild/standard:4.0
+        Image: aws/codebuild/standard:5.0
         EnvironmentVariables:
           - Name: NOMBRE_CLUSTER
             Type: PLAINTEXT
@@ -47,12 +47,12 @@ Resources:
             Value: $AWS_REGION
           - Name: AWS_ACCESS_KEY_ID
             Type: PLAINTEXT
-            Value: !Sub '{{resolve:secretsmanager:cred-pipeline:SecretString:AWS_ACCESS_KEY_ID}}'
+            Value: !Sub '{{resolve:secretsmanager:$NOMBRE_SECRETO:SecretString:AWS_ACCESS_KEY_ID}}'
           - Name: AWS_SECRET_ACCESS_KEY
             Type: PLAINTEXT
-            Value: !Sub '{{resolve:secretsmanager:cred-pipeline:SecretString:AWS_SECRET_ACCESS_KEY}}' 
+            Value: !Sub '{{resolve:secretsmanager:$NOMBRE_SECRETO:SecretString:AWS_SECRET_ACCESS_KEY}}' 
       Source:
-        Location: https://git-codecommit.us-east-1.amazonaws.com/v1/repos/entrenamientos-aws
+        Location: https://git-codecommit.$AWS_REGION.amazonaws.com/v1/repos/entrenamientos-aws
         Type: CODECOMMIT
         BuildSpec: devops/app-ejemplo/codebuild/namespace/buildspec.yml
       TimeoutInMinutes: 10

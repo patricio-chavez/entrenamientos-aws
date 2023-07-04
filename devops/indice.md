@@ -68,10 +68,10 @@ Sigue este camino de aprendizaje paso a paso, completa los ejercicios prácticos
   - [Resguarda credenciales](secretsmanager.md#Resguarda-credenciales)
   - [Recupera credenciales](secretsmanager.md#Resguarda-recupera)
 
-- [AWS CloudFormation](cloudformation.md)
-  - [Primera plantilla](cloudformation.md#Primera-plantilla)
-
 - [AWS EKS](eks.md)
   - [Despliega un cluster](eks.md#Despliega-un-cluster-EKS)
   - [Configura el acceso programático](eks.md#Configura-el-kubeconfig)
   - [Despliega una aplicación](eks.md#Depliega-una-aplicación)
+
+- [AWS CloudFormation](cloudformation.md)
+  - [Primera plantilla](cloudformation.md#Primera-plantilla)
