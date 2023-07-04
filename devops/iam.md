@@ -1,18 +1,29 @@
 # Prácticas Devops en Amazon Web Services (AWS)
 ## AWS Identity and Access Management
 
+IAM (Identity and Access Management) es el servicio de gestión de identidades y accesos de AWS. Con IAM, puedes controlar de manera precisa quién tiene acceso a los recursos de AWS y qué acciones pueden realizar.
+
+IAM te permite crear y gestionar usuarios, grupos y roles, y asignar permisos específicos a cada uno de ellos. Puedes crear políticas de IAM que definen los permisos y acciones permitidas, y luego asociar esas políticas a los usuarios, grupos o roles correspondientes.
+
+Esto te brinda un nivel granular de control sobre quién puede acceder a tus recursos y qué pueden hacer con ellos. Además, IAM ofrece integración con otros servicios de AWS, lo que te permite definir políticas de acceso a nivel de servicio y utilizar identidades federadas para facilitar la gestión de usuarios y permisos.
 
 ### Crea el usuario cloud_automation
-#### Para evitar el uso de credenciales personales define un nuevo usuario siguiendo el principio de menores privilegios
+
+Para garantizar la seguridad y seguir el principio de menores privilegios, es recomendable crear un usuario separado para automatizar tareas en AWS. En este caso, crearemos un usuario llamado "cloud_automation" que nos permitirá realizar operaciones sin la necesidad de utilizar nuestras credenciales personales.
+
+Para crear el usuario "cloud_automation", ejecuta el siguiente comando:
+
 ```shell
 aws iam create-user --user-name cloud_automation
 ```
 
-#### IAM te mostrará gráficamente el usuario y puede navegar entre las opciones para comprobar que aún no tiene ningún privilegio
+IAM te mostrará gráficamente el usuario y puedes explorar las opciones para comprobar que aún no tiene ningún privilegio asignado.
 
 <div align="center">
   <img src="imagenes/usuario_cloud_automation.png" alt="Usuario cloud_automation">
 </div>
+
+En este momento el usuario no tiene asignados privilegios específicos. A medida que avancemos en las prácticas, iremos otorgando permisos de manera controlada y según las necesidades del usuario para realizar tareas específicas en AWS. Esto nos permite mantener un enfoque de seguridad y cumplir con el principio de menor privilegio.
 
 ### Configura el acceso programático
 #### Aprovecha la salida para guardar las llaves en variables
