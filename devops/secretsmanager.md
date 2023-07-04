@@ -15,8 +15,6 @@ Con el siguiente código, se genera un número aleatorio para garantizar que el 
 
 Las credenciales del usuario cloud_automation, incluyendo la ACCESS_KEY_ID y SECRET_ACCESS_KEY, se proporcionan como un objeto JSON en el parámetro --secret-string. Estas credenciales estarán protegidas y disponibles para su uso seguro en tus aplicaciones y servicios.
 
-En este paso nos estamos asegurando que durante tu aprendizaje puedas borrar y recrear los secretos simplemente ejecutando nuevamente el código. Si el nombre del secreto fuera fijo y lo borraras, al volver a ejecutar el código proporcionado daría un error de creación porque no se eliminan los secretos de forma inmediata. Los secretos que se intentan borrar siempre se marcan para ser eliminados a futuro.
-
 ```shell
 
 # Guardar las credenciales en un secreto
@@ -24,6 +22,9 @@ export NUMERO_ALEATORIO=$(shuf -i 10000000-99999999 -n 1)
 export NOMBRE_SECRETO=credenciales-automation-$NUMERO_ALEATORIO
 aws secretsmanager create-secret --name $NOMBRE_SECRETO --secret-string '{"ACCESS_KEY_ID": "'"$ACCESS_KEY_ID"'", "SECRET_ACCESS_KEY": "'"$SECRET_ACCESS_KEY"'"}'
 ```
+Importante: Creando un valor de secreto con un componente aleatorio garantiza que durante tu aprendizaje puedas borrar y recrear los secretos simplemente ejecutando nuevamente las mismas piezas de código. Si el nombre del secreto fuera fijo y lo borraras, al volver a ejecutar el código proporcionado daría un error de creación porque no se eliminan los secretos de forma inmediata. Los secretos que se intentan borrar siempre se marcan para ser eliminados a futuro.
+
+### Verifica el secreto con la consola de administración de AWS
 
 Desde la consola de administración de AWS también se puede observar el secreto "credenciales-pipeline" almacenado en AWS Secrets Manager. Este secreto contiene las credenciales del usuario "cloud_automation" en forma de un objeto JSON que incluye tanto la ACCESS_KEY_ID como la SECRET_ACCESS_KEY. 
 
