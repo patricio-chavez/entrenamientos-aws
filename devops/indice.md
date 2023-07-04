@@ -19,7 +19,8 @@ La AWS CloudShell se abrirá dentro del espacio de la consola pero para mayor co
   <img src="imagenes/iniciar-cloudshell.png" alt="AWS CloudShell">
 </div>
 
-Configura el acceso programático tomando las credenciales de la bienvenida a AWS Sandbox y la región de la consola de administración de AWS (Ej: us-east-1).
+Configura el acceso programático tomando las credenciales de la bienvenida a AWS Sandbox y la región de la consola de administración de AWS. Por ejemplo, us-east-1.
+
 ```shell
 aws configure
 ```
