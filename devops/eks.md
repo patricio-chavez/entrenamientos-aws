@@ -80,4 +80,35 @@ Este comando actualizará automáticamente tu kubeconfig local, en este caso en 
 aws eks update-kubeconfig --name $CLUSTER --region $REGION
 ```
 
+## Instala tu primer EKS Addon
+
+El AWS Load Balancer Controller es un complemento (addon) esencial para tu clúster de Amazon Elastic Kubernetes Service (EKS) que te permite integrar y administrar de manera sencilla los balanceadores de carga de AWS en tu entorno de Kubernetes.
+
+Con el AWS Load Balancer Controller, puedes aprovechar los servicios de balanceo de carga altamente disponibles y escalables de AWS, como Elastic Load Balancer (ELB) y Application Load Balancer (ALB), para distribuir el tráfico a tus aplicaciones en el clúster de EKS. El controlador se encarga de la configuración y la administración de los balanceadores de carga de AWS, lo que te permite centrarte en el desarrollo y la implementación de tus aplicaciones sin preocuparte por la complejidad de la infraestructura de red.
+
+### OpenID Connect (OIDC) 
+
+Para utilizar el AWS Load Balancer Controller, es necesario habilitar OpenID Connect (OIDC) en tu clúster EKS. OIDC permite que el controlador interactúe con el clúster y realice acciones en su nombre, como crear y configurar balanceadores de carga.
+
+Al habilitar OIDC, se establece una confianza entre tu clúster EKS y AWS Identity and Access Management (IAM). Esto permite que el controlador obtenga los permisos necesarios para interactuar con los servicios de AWS y administrar los balanceadores de carga de manera segura.
+
+Una manera muy simple de configurar el OIDC es usando nuevamente eksctl
+
+```shell
+eksctl utils associate-iam-oidc-provider --cluster $CLUSTER --region $AWS_REGION --approve
+```
+
+Puedes verificar la creación con la interfaz gráfica
+
+<div align="center">
+  <img src="imagenes/oidc-iam.png" alt="OIDC IAM">
+</div>
+
+Ahora guardaremos en una variable el ARN (Amazon Resource Name) el cual es un identificador único utilizado en AWS para identificar de manera unívoca los recursos en la nube.
+
+```shell
+export OIDC_ARN=$(eksctl utils associate-iam-oidc-provider --cluster $CLUSTER --region $AWS_REGION --approve)
+echo $OIDC_ARN
+```
+
 [Volver](indice.md)
