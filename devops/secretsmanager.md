@@ -34,7 +34,7 @@ Desde la consola de administración de AWS también se puede observar el secreto
 
 ### Recupera credenciales
 
-Este comando te permitirá obtener las credenciales programáticamente desde el secreto especificado. Sin embargo, es importante tener precaución al manejar estas credenciales y evitar exponerlas innecesariamente. Recuerda que el objetivo de utilizar un servicio como Secrets Manager es mantener las credenciales de forma segura y controlada, evitando su exposición en texto plano o en archivos de configuración. Al utilizar estas credenciales en tus aplicaciones o servicios, asegúrate de seguir las mejores prácticas de seguridad para protegerlas adecuadamente.
+Este comando te permitirá obtener las credenciales programáticamente desde el secreto especificado. Sin embargo, es importante tener precaución al manejar estas credenciales y evitar exponerlas innecesariamente. Recuerda que el objetivo de utilizar un servicio como Secrets Manager es mantener las credenciales de forma segura y controlada, evitando su exposición en texto plano o en ficheros de configuración. Al utilizar estas credenciales en tus aplicaciones o servicios, asegúrate de seguir las mejores prácticas de seguridad para protegerlas adecuadamente.
 
 ```shell
 aws secretsmanager get-secret-value --secret-id $NOMBRE_SECRETO

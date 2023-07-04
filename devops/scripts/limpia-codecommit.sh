@@ -12,15 +12,15 @@ else
   echo "Error al eliminar el repositorio de CodeCommit."
 fi
 
-# Eliminar configuración del archivo ~/.ssh/config
-echo "Eliminando configuración del archivo ~/.ssh/config..."
+# Eliminar configuración del fichero ~/.ssh/config
+echo "Eliminando configuración del fichero ~/.ssh/config..."
 sed -i '/Host git-codecommit.*.amazonaws.com/,/IdentityFile/d' ~/.ssh/config
 
 # Verificar si la eliminación fue exitosa
 if [ $? -eq 0 ]; then
-  echo "Configuración eliminada correctamente del archivo ~/.ssh/config."
+  echo "Configuración eliminada correctamente del fichero ~/.ssh/config."
 else
-  echo "Error al eliminar la configuración del archivo ~/.ssh/config."
+  echo "Error al eliminar la configuración del fichero ~/.ssh/config."
 fi
 
 # Eliminar clave pública de AWS IAM

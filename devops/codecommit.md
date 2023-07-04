@@ -46,7 +46,7 @@ Este comando te proporcionará el ID de la clave pública SSH asociada con el us
 
 #### Configuración adicional de SSH
 
-Para finalizar la configuración de acceso a los repositorios de Code Commit, necesitarás agregar algunas líneas al archivo de configuración de SSH. Este archivo, por defecto, se encuentra en la ruta ~/.ssh/config.
+Para finalizar la configuración de acceso a los repositorios de Code Commit, necesitarás agregar algunas líneas al fichero de configuración de SSH. Este fichero, por defecto, se encuentra en la ruta ~/.ssh/config.
 
 
 ```shell
@@ -61,15 +61,15 @@ Estas líneas le indican a SSH cómo autenticar las conexiones a los repositorio
 
 Con estas configuraciones adicionales, estarás listo para acceder y trabajar con los repositorios de Code Commit de forma segura y sin problemas de autenticación.
 
-#### Limita los permisos sobre el archivo
+#### Limita los permisos sobre el fichero
 
-Para garantizar la seguridad de tu archivo de configuración de SSH, es recomendable limitar los permisos de acceso. Puedes hacerlo utilizando el siguiente comando en tu terminal:
+Para garantizar la seguridad de tu fichero de configuración de SSH, es recomendable limitar los permisos de acceso. Puedes hacerlo utilizando el siguiente comando en tu terminal:
 
 ```shell
 chmod 600 ~/.ssh/config
 ```
 
-Esto establecerá los permisos adecuados para que solo el propietario del archivo pueda leer y modificar su contenido. Al restringir los permisos, se reduce el riesgo de accesos no autorizados a tus configuraciones de SSH.
+Esto establecerá los permisos adecuados para que solo el propietario del fichero pueda leer y modificar su contenido. Al restringir los permisos, se reduce el riesgo de accesos no autorizados a tus configuraciones de SSH.
 
 ## Crea tu primer repositorio
 
@@ -154,7 +154,7 @@ Después de haber subido el fichero README.md a tu repositorio en AWS Code Commi
 
 ## Ya puedes interactuar con AWS Code Commit. Felicitaciones!
 
-Has completado exitosamente los pasos para preparar tu sistema operativo, crear tu primera clave SSH, subirla a AWS IAM, configurar tu archivo config de SSH, crear tu primer repositorio, subir código y comprobar visualmente cómo luce tu repositorio en AWS Code Commit. Ahora estás listo para comenzar a utilizar este poderoso servicio de alojamiento de repositorios de control de versiones en la nube.
+Has completado exitosamente los pasos para preparar tu sistema operativo, crear tu primera clave SSH, subirla a AWS IAM, configurar tu fichero config de SSH, crear tu primer repositorio, subir código y comprobar visualmente cómo luce tu repositorio en AWS Code Commit. Ahora estás listo para comenzar a utilizar este poderoso servicio de alojamiento de repositorios de control de versiones en la nube.
 
 AWS Code Commit te ofrece un entorno seguro y escalable para almacenar y gestionar el código fuente de tus aplicaciones. Con características como el control de versiones, los flujos de trabajo de revisión de código y las integraciones con otros servicios de AWS, podrás colaborar de manera efectiva con tu equipo de desarrollo y agilizar tus procesos de desarrollo y despliegue.
 

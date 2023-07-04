@@ -31,8 +31,8 @@ export SSHKEYID=$(aws iam list-ssh-public-keys --user-name cloud_user | grep -oP
 # Mostrar el valor de SSHKEYID
 echo "SSHKEYID: $SSHKEYID"
 
-# Agregar la configuración al archivo ~/.ssh/config
-echo "Agregando configuración al archivo ~/.ssh/config..."
+# Agregar la configuración al fichero ~/.ssh/config
+echo "Agregando configuración al fichero ~/.ssh/config..."
 cat << EOF >> ~/.ssh/config
 Host git-codecommit.*.amazonaws.com
 User $SSHKEYID
@@ -41,7 +41,7 @@ EOF
 
 chmod 600 ~/.ssh/config
 
-echo "Configuración agregada correctamente al archivo ~/.ssh/config."
+echo "Configuración agregada correctamente al fichero ~/.ssh/config."
 
 # Crear un repositorio en CodeCommit
 echo "Creando repositorio en CodeCommit..."
@@ -74,13 +74,13 @@ fi
 echo "Cambiando al directorio del repositorio..."
 cd $NOMBRE_REPO
 
-# Crear archivo README.md
-echo "Creando archivo README.md..."
+# Crear fichero README.md
+echo "Creando fichero README.md..."
 cat << EOF > README.md
 Código de mi increíble aplicación que correrá en Kubernetes!"
 EOF
 
-echo "Archivo README.md creado correctamente."
+echo "Fichero README.md creado correctamente."
 
 # Añadir rama main
 git checkout -b main
