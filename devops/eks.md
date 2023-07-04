@@ -5,7 +5,7 @@ Amazon Elastic Kubernetes Service (EKS) es un servicio de gestión de contenedor
 
 EKS se encarga de gestionar la infraestructura de la capa de infraestructura en la que se ejecuta y administra el clúster de Kubernetes. Esto incluye los servidores, redes, almacenamiento y otros recursos necesarios para soportar el funcionamiento de los contenedores y la orquestación de Kubernetes, lo que te permite centrarte en desarrollar y ejecutar tus aplicaciones sin preocuparte por la administración del clúster.
 
-## Despliega un cluster EKS
+## Lanza un cluster
 
 Para este entrenamiento simularemos un cluster independiente y le iremos agregando todos los detalles de configuración necesarios para desplegar aplicaciones desde un pipeline. En otros casos, la creación y destrucción del cluster puede ser ejecutada como parte del propio pipeline.
 
@@ -24,7 +24,7 @@ export ZONAS='us-east-1a,us-east-1b,us-east-1c'
 export TIPO_INSTANCIA='t3.medium'
 ```
 
-### Crea el cluster EKS
+### Aprovecha eksctl
 
 Este comando utilizará los valores de las variables previamente configuradas para especificar el nombre del clúster, la región de AWS, las zonas de disponibilidad y el tipo de instancia para los nodos del clúster.
 
@@ -46,3 +46,4 @@ Este comando actualizará automáticamente tu kubeconfig local, en este caso en 
 aws eks update-kubeconfig --name $CLUSTER --region $REGION
 ```
 
+[Volver](indice.md)
