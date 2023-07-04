@@ -40,11 +40,13 @@ Mientras tanto puedes ir siguiendo el progreso desde la propia AWS CloudShell, d
   <img src="imagenes/creacion-eks-cloudshell.png" alt="Creación EKS Cloud Shell logs">
 </div>
 
+
 Otra vista ya mas detallada podrás obtenerla directamente desde Amazon CloudFormation.
 
 <div align="center">
   <img src="imagenes/creacion-eks-cloudformation.png" alt="Creación EKS CloudFormation">
 </div>
+
 
 Si haces clic sobre el nombre del template podrás revisar los eventos.
 
@@ -52,17 +54,20 @@ Si haces clic sobre el nombre del template podrás revisar los eventos.
   <img src="imagenes/creacion-eks-eventos.png" alt="Creación EKS CloudFormation Eventos">
 </div>
 
+
 También podrás ver los recursos.
 
 <div align="center">
   <img src="imagenes/creacion-eks-recursos.png" alt="Creación EKS CloudFormation Recursos">
 </div>
 
+
 Y una recomendación muy fuerte es la de revisar la plantilla de CloudFormation para ir tomando práctica en la descripción de la infraestructura.
 
 <div align="center">
   <img src="imagenes/creacion-eks-template.png" alt="Creación EKS CloudFormation Template">
 </div>
+
 
 Como una configuración tan compleja requiere tiempo y ya hemos recorrido bastante es un buen momento para una pausa e ir por un café. Mientras tanto eksctl se encarga del resto!
 
