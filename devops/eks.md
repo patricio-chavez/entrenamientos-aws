@@ -19,7 +19,7 @@ Antes de desplegar tu clúster de Amazon EKS, es conveniente configurar algunas 
 
 ```shell
 export CLUSTER='cluster-eks'
-export REGION='us-east-1'
+export AWS_REGION='us-east-1'
 export ZONAS='us-east-1a,us-east-1b,us-east-1c'
 export TIPO_INSTANCIA='t3.medium'
 ```
@@ -29,7 +29,7 @@ export TIPO_INSTANCIA='t3.medium'
 Este comando utilizará los valores de las variables previamente configuradas para especificar el nombre del clúster, la región de AWS, las zonas de disponibilidad y el tipo de instancia para los nodos del clúster.
 
 ```shell
-eksctl create cluster --name $CLUSTER --region $REGION --zones $ZONAS --node-type $TIPO_INSTANCIA
+eksctl create cluster --name $CLUSTER --region $AWS_REGION --zones $ZONAS --node-type $TIPO_INSTANCIA
 ```
 
 Una vez completada la ejecución del comando, tendrás tu clúster de EKS listo para utilizar y desplegar tus aplicaciones basadas en contenedores. 
@@ -77,7 +77,7 @@ Después de crear tu clúster de EKS, necesitarás configurar el fichero kubecon
 Este comando actualizará automáticamente tu kubeconfig local, en este caso en particular en la AWS CloudShell, con la información de tu clúster de EKS, incluyendo el nombre del clúster, la región y los datos de autenticación necesarios.
 
 ```shell
-aws eks update-kubeconfig --name $CLUSTER --region $REGION
+aws eks update-kubeconfig --name $CLUSTER --region $AWS_REGION
 ```
 
 ## Instala tu primer EKS Addon
