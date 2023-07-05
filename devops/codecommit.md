@@ -61,7 +61,7 @@ Estas líneas le indican a SSH cómo autenticar las conexiones a los repositorio
 
 Con estas configuraciones adicionales, estarás listo para acceder y trabajar con los repositorios de Code Commit de forma segura y sin problemas de autenticación.
 
-#### Limita los permisos sobre el fichero
+#### Limita los permisos
 
 Para garantizar la seguridad de tu fichero de configuración de SSH, es recomendable limitar los permisos de acceso. Puedes hacerlo utilizando el siguiente comando en tu terminal:
 
@@ -121,7 +121,7 @@ Navega hasta el directorio del repositorio clonado utilizando el siguiente coman
 cd mi-repositorio
 ```
 
-### Crea tu primer fichero
+### Crea un README.md
 
 Crea un nuevo fichero llamado README.md y añade el contenido utilizando el siguiente comando:
 
@@ -131,7 +131,7 @@ Código de mi increíble aplicación que correrá en Kubernetes!"
 EOF
 ```
 
-### Sube el fichero a AWS Code Commit
+### Sube el README.me a AWS Code Commit
 
 Una vez que hayas creado tu primer fichero y estés listo para subirlo al repositorio en AWS Code Commit.
 Primero cambia a la rama principal main, luego agrega el fichero README.md al área de preparación, realiza un commit con un mensaje descriptivo y finalmente empuja los cambios. Todo esto puedes ejecutarlo con los siguientes comandos:
