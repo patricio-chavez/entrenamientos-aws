@@ -105,7 +105,7 @@ Una vez finalizada la ejecución del script, tu primer repositorio estará listo
 </div>
 
 
-## Sube código
+## Sube el código
 
 Una vez que has creado tu repositorio en AWS Code Commit, puedes comenzar a subir tu código. Como primer paso puedes clonar el repositorio vación en la AWS CloudShell:
 
