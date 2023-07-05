@@ -42,4 +42,54 @@ eksctl create iamserviceaccount --cluster $CLUSTER --name $NOMBRE_CUENTA_SERVICI
 ```
 El parámetro --approve indica que se debe aprobar la creación de la cuenta de servicio sin requerir confirmación adicional.
 
+## Crea un role para ExternalDNS
+
+En Kubernetes, un cluster role es un objeto de autorización que define un conjunto de permisos y reglas de acceso a nivel de clúster. Proporciona autorización y controla el acceso a recursos y operaciones en todo el clúster Kubernetes.
+
+El cluster role se aplica a todos los espacios de nombres en el clúster. Al asignar un cluster role específico a External DNS, puedes controlar de manera granular qué acciones puede realizar en el clúster y restringir su acceso a los recursos necesarios. Esto garantiza la seguridad y el cumplimiento de las políticas de acceso dentro de tu clúster de Kubernetes.
+
+```shell
+cat << EOF > ExternalDNS-cluster-role.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: external-dns
+  labels:
+    app.kubernetes.io/name: external-dns
+rules:
+  - apiGroups: [""]
+    resources: ["services","endpoints","pods","nodes"]
+    verbs: ["get","watch","list"]
+  - apiGroups: ["extensions","networking.k8s.io"]
+    resources: ["ingresses"]
+    verbs: ["get","watch","list"]
+EOF
+```
+
+## Asocia el cluster role de External DNS
+
+El ClusterRoleBinding establece una relación entre el ClusterRole y las identidades a las que se les conceden los permisos asociados. Estas identidades pueden ser usuarios individuales, grupos de usuarios o servicios del clúster.
+
+Cuando se crea un ClusterRoleBinding, se especifica el nombre del ClusterRole y se indica qué usuarios, grupos o servicios deben ser asignados a ese ClusterRole. Esto permite definir políticas de autorización granulares y otorgar diferentes niveles de acceso a diferentes entidades en el clúster.
+
+```shell
+cat << EOF > ExternalDNS-cluster-role-binding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: external-dns-viewer
+  labels:
+    app.kubernetes.io/name: external-dns
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: external-dns
+subjects:
+  - kind: ServiceAccount
+    name: external-dns
+    namespace: ${EXTERNALDNS_NS}
+EOF
+```
+
+
 Continua con [AWS CodeBuild](codebuild.md). También puedes revisar nuevamente el paso anterior [Elastic Load Balancing](alb.md) o volver al [Indice](indice.md)

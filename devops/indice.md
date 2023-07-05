@@ -12,8 +12,6 @@ A continuación, explorarás AWS CloudFormation para desplegar y administrar la 
 
 Sigue este camino de aprendizaje paso a paso, completa los ejercicios prácticos y consolida tus conocimientos en AWS DevOps. 
 
-Indice 
-
 - [Comienza aquí](herramientas.md#Comienza-aquí)
   - [Herramientas requeridas](herramientas.md#Herramientas-requeridas)
   - [Entorno de pruebas](herramientas.md#Entorno-de-pruebas)
@@ -47,6 +45,8 @@ Indice
 - [Amazon Route 53](route53.md)
   - [ExternalDNS](route53.md#ExternalDNS)
   - [Crea una cuenta de servicio para ExternalDNS](route53.md#Crea-una-cuenta-de-servicio-para-ExternalDNS)
+  - [Crea un role para ExternalDNS](route53#Crea-un-role-para-ExternalDNS)
+  - [Asocia el cluster role de External DNS](route53#Asocia-el-cluster-role-de-External-DNS)
 
 - [AWS CodeBuild](codebuild.md)
   - Crea tu primer proyecto
