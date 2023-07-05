@@ -61,12 +61,12 @@ Sigue este camino de aprendizaje paso a paso, completa los ejercicios prácticos
   - Verifica el estado del pipeline
   - Comprueba los resultados
 
-<div style="width: 100%;">
-  <div style="text-align: right; display: inline-block;">
+<div style="display: flex; width: 100%;">
+  <div style="text-align: right;">
     Este es un texto alineado a la derecha.
   </div>
 
-  <div style="text-align: left; display: inline-block;">
+  <div style="text-align: left;">
     Este es un texto alineado a la izquierda.
   </div>
 </div>
