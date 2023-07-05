@@ -37,3 +37,18 @@ Sigue este camino de aprendizaje paso a paso, completa los ejercicios prácticos
 
 - [AWS CloudFormation](cloudformation.md)
   - [Primera plantilla](cloudformation.md#Primera-plantilla)
+
+- [AWS CodeBuild]
+  - [Crea tu primer proyecto]
+  - [Verifica el ciclo de vida]
+  - [Revisa los logs]
+
+- [AWS CodePipeline]
+  - [Crea tu primer primer pipeline]
+  - [Verifica el estado]
+  - [Resguarda la configuración]
+
+- [Ciclo contínuo]
+  - [Modifica la aplicación]
+  - [Verifica el estado del pipeline]
+  - [Comprueba los resultados]
