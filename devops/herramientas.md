@@ -48,3 +48,12 @@ Recuerda que puedes consultar la documentación oficial de AWS, buscar en la com
   <a href="indice.md" style="align-self: flex-start;">Volver</a>
   <a href="codecommit.md" style="align-self: flex-end;">Continuar</a>
 </div>
+
+<div style="display: flex; justify-content: space-between;">
+  <div style="text-align: left;">
+    <a href="indice.md">Volver</a>
+  </div>
+  <div style="text-align: right;">
+    <a href="siguiente.md">Continuar</a>
+  </div>
+</div>
