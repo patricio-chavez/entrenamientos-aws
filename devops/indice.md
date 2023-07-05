@@ -60,3 +60,9 @@ Sigue este camino de aprendizaje paso a paso, completa los ejercicios prácticos
   - Modifica la aplicación
   - Verifica el estado del pipeline
   - Comprueba los resultados
+
+<div align="center">
+  <img src="imagenes/usuario_cloud_automation.png" alt="Usuario cloud_automation">
+  	
+<p style="text-align: right;">This text is aligned to the right.</p>
+</div>

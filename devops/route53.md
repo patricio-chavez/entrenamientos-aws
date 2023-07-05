@@ -43,7 +43,5 @@ eksctl create iamserviceaccount --cluster $CLUSTER --name $NOMBRE_CUENTA_SERVICI
 ```
 El parámetro --approve indica que se debe aprobar la creación de la cuenta de servicio sin requerir confirmación adicional.
 
-	
-<p style="text-align: right;">This text is aligned to the right.</p>
 
 [Volver](indice.md)
