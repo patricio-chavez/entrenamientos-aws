@@ -49,7 +49,7 @@ Puedes verificar visualmente las credenciales de acceso programático del usuari
 Importante: Si por algún motivo no pudiste guardar las llaves en las variables, no te preocupes, bórrala y configura nuevamente el acceso programático. Lo importante es tener el juego de llaves activo, e inclusive, en el futuro verás que es una buena práctica rotar las los juegos de llaves que consiste en cambiar regularmente las claves de acceso utilizadas por los usuarios o servicios para acceder a los recursos de AWS. Esto ayuda a reducir el riesgo de compromiso de las claves y aumenta la seguridad de tus cuentas de AWS.
 
 ```shell
-aws iam delete-access-key --user-name cloud_automation --access-key-id $(aws iam list-access-keys --user-name cloud_automation | jq -r '.AccessKeyMetadata[0].AccessKeyId'
+Ejecuta el código SOLO si deseas regenerar las llaves -> aws iam delete-access-key --user-name cloud_automation --access-key-id $(aws iam list-access-keys --user-name cloud_automation | jq -r '.AccessKeyMetadata[0].AccessKeyId'
 ```
 
 [Volver](indice.md)
