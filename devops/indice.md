@@ -24,6 +24,8 @@ Sigue este camino de aprendizaje paso a paso, completa los ejercicios prácticos
 - [AWS Identity and Access Management](iam.md)
   - [Crea el usuario cloud_automation](iam.md#Crea-el-usuario-cloud_automation)
   - [Configura el acceso programático](iam.md#Configura-el-acceso-programático)
+  - [Crea una política para AWS ALB Controller](iam.md#Crea-una-política-para-AWS-ALB-Controller)
+  - [Crea una política para ExternalDNS](iam.md#Crea-una-política-para-ExternalDNS)
 
 - [AWS Secrets Manager](secretsmanager.md)
   - [Resguarda credenciales](secretsmanager.md#Resguarda-credenciales)

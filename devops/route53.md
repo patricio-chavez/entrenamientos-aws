@@ -15,48 +15,16 @@ Puedes definir archivos de configuración declarativos que especifiquen los nomb
 
 ### Crea una cuenta de servicio para ExternalDNS
 
-Para permitir que el controlador ExternalDNS realice cambios en los registros DNS en Amazon Route 53, es necesario crear una cuenta de servicio y asignarle una política de IAM adecuada.
-
-Puedes utilizar el siguiente código para crear una política de IAM en un archivo llamado "external-dns-policy.json":
+En IAM (Identity and Access Management) una de las políticas creadas tuvo como objetivo permitir acciones a la cuenta de servicio de ExternalDNS sobre Route 53. Es momento de configurarla y como primera paso recupera el identificador ARN para luego mapearlo a la cuenta de servicio.
 
 ```shell
-cat << EOF > external-dns-policy.json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "route53:ChangeResourceRecordSets"
-      ],
-      "Resource": [
-        "arn:aws:route53:::hostedzone/*"
-      ]
-    },
-    {
-      "Effect": "Allow",
-      "Action": [
-        "route53:ListHostedZones",
-        "route53:ListResourceRecordSets"
-      ],
-      "Resource": [
-        "*"
-      ]
-    }
-  ]
-}
-EOF
-```
-
-Crea y exporta el identificador ARN de la política
-
-```shell
-aws iam create-policy --policy-name "AllowExternalDNSUpdates" --policy-document file://external-dns-policy.json
 export ARN_POLICY_DNS=$(aws iam list-policies --query 'Policies[?PolicyName==`AllowExternalDNSUpdates`].Arn' --output text)
 echo $ARN_POLICY_DNS
 ```
 
-Define un espacio de nombres para el controlador utilizando kubectl
+Define un espacio de nombres para el controlador utilizando kubectl. Un namespace actúa como un contenedor virtual que permite agrupar y separar aplicaciones, servicios y otros recursos relacionados en un entorno de Kubernetes. Proporciona un ámbito aislado para los recursos, lo que significa que los nombres de los recursos pueden ser reutilizados en diferentes namespaces sin conflictos.
+
+Los namespaces también pueden ser utilizados para aplicar políticas de seguridad y de acceso basadas en roles (RBAC), lo que permite controlar los permisos y el acceso a los recursos dentro de un namespace específico.
 
 ```shell
 export ESPACIO_NOMBRES_DNS='external-dns'
@@ -74,5 +42,8 @@ export CLUSTER='cluster-eks'
 eksctl create iamserviceaccount --cluster $CLUSTER --name $NOMBRE_CUENTA_SERVICIO_DNS --namespace $ESPACIO_NOMBRES_DNS --attach-policy-arn $ARN_POLICY_DNS --approve --override-existing-serviceaccounts
 ```
 El parámetro --approve indica que se debe aprobar la creación de la cuenta de servicio sin requerir confirmación adicional.
+
+	
+<p style="text-align: right;">This text is aligned to the right.</p>
 
 [Volver](indice.md)

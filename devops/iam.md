@@ -51,7 +51,7 @@ Importante: Si por algún motivo no pudiste guardar las llaves en las variables,
 ```shell
 Ejecuta el código SOLO si deseas regenerar las llaves -> aws iam delete-access-key --user-name cloud_automation --access-key-id $(aws iam list-access-keys --user-name cloud_automation | jq -r '.AccessKeyMetadata[0].AccessKeyId'
 ```
-## Crea una política
+## Crea una política para AWS ALB Controller
 
 Crear una política de IAM que otorgará los permisos necesarios al AWS Load Balancer Controller para realizar llamadas a las API de AWS en su nombre. Esta política permitirá al controlador de balanceador de carga interactuar con los servicios de AWS requeridos para su funcionamiento cuando despliegues el ingreso a tu aplicación en EKS.
 
@@ -65,6 +65,47 @@ Genera una política de IAM con la plantilla descargada
 
 ```shell
 aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy --policy-document file://iam_policy.json
+```
+
+## Crea una política para ExternalDNS
+
+Crear una política de IAM que otorgará los permisos necesarios ExternalDNS para realizar llamadas a las API de AWS en su nombre. Esta política permitirá al controlador de nombres interactuar con los servicios de AWS Route 53 requeridos para los objetos ingress de Kubernetes a tu aplicación en EKS.
+
+Para trabajar con distintas alternativas, esta vez puedes utilizar el siguiente código con redirección de cat para crear una política de IAM en un archivo llamado "external-dns-policy.json" en lugar de descargarlo con curl:
+
+```shell
+cat << EOF > external-dns-policy.json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "route53:ChangeResourceRecordSets"
+      ],
+      "Resource": [
+        "arn:aws:route53:::hostedzone/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "route53:ListHostedZones",
+        "route53:ListResourceRecordSets"
+      ],
+      "Resource": [
+        "*"
+      ]
+    }
+  ]
+}
+EOF
+```
+
+Crea la política de acuerdo al fichero generado previamente:
+
+```shell
+aws iam create-policy --policy-name "AllowExternalDNSUpdates" --policy-document file://external-dns-policy.json
 ```
 
 
