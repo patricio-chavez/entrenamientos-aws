@@ -12,6 +12,8 @@ A continuación, explorarás AWS CloudFormation para desplegar y administrar la 
 
 Sigue este camino de aprendizaje paso a paso, completa los ejercicios prácticos y consolida tus conocimientos en AWS DevOps. 
 
+Indice 
+
 - [Comienza aquí](herramientas.md#Comienza-aquí)
   - [Herramientas requeridas](herramientas.md#Herramientas-requeridas)
   - [Entorno de pruebas](herramientas.md#Entorno-de-pruebas)
