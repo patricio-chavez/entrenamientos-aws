@@ -80,7 +80,7 @@ cat << EOF > crear_repo.sh
 #!/bin/bash
 
 NOMBRE_REPO="mi-repositorio"
-aws codecommit create-repository --repository-name $NOMBRE_REPO
+aws codecommit create-repository --repository-name \$NOMBRE_REPO
 EOF
 ```
 
