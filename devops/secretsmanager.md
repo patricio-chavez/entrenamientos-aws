@@ -55,4 +55,4 @@ Esto te permite visualizar y verificar las credenciales almacenadas en el secret
   <img src="imagenes/secreto-credenciales-awsmc-visible.png" alt="Secreto Credenciales Pipeline AWS Management Console">
 </div>
 
-[Volver](indice.md)
+Continua con [AWS EKS](eks.md). También puedes revisar nuevamente el paso anterior [AWS Identity and Access Management](iam.md) o volver al [Indice](indice.md)
