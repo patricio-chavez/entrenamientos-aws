@@ -65,6 +65,6 @@ Sigue este camino de aprendizaje paso a paso, completa los ejercicios prácticos
   <img src="imagenes/usuario_cloud_automation.png" alt="Usuario cloud_automation">
   	
 <div style="text-align: right;">
-  Este es un texto alineado a la derecha.
+  Este es un texto alineado a la derecha. o casi al medio?
 </div>
 </div>
