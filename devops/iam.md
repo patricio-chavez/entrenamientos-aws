@@ -108,5 +108,4 @@ Crea la política de acuerdo al fichero generado previamente:
 aws iam create-policy --policy-name "AllowExternalDNSUpdates" --policy-document file://external-dns-policy.json
 ```
 
-
-[Volver](indice.md)
+Continua con [AWS Secrets Manager](secretsmanager.md). También puedes revisar nuevamente el paso anterior [AWS Code Commit](codecommit.md) o volver al [Indice](indice.md)

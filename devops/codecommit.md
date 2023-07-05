@@ -160,4 +160,4 @@ AWS Code Commit te ofrece un entorno seguro y escalable para almacenar y gestion
 
 A partir de ahora, puedes seguir explorando las funcionalidades de AWS Code Commit, realizar más acciones como la clonación de repositorios, realizar nuevas confirmaciones de código, gestionar ramas y mucho más. Te animamos a continuar tu camino de aprendizaje en AWS y a aprovechar al máximo esta herramienta esencial para el desarrollo de aplicaciones en la nube.
 
-Continua con [AWS Code Commit](codecommit.md) o si deseas revisar nuevamente el paso anterior [Comienza aquí](herramientas.md#Comienza-aquí) o volver al [Indice](indice.md)
+Continua con [AWS Identity and Access Management](iam.md). También puedes revisar nuevamente el paso anterior [Comienza aquí](herramientas.md#Comienza-aquí) o volver al [Indice](indice.md)
