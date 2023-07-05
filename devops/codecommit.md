@@ -152,7 +152,7 @@ Después de haber subido el fichero README.md a tu repositorio en AWS Code Commi
   <img src="imagenes/repo-con-readme.png" alt="Primer AWS CodeCommit Repo con README.md">
 </div>
 
-## Ya puedes interactuar con AWS Code Commit. Felicitaciones!
+## Ya puedes interactuar con AWS Code Commit. ¡ Felicitaciones!
 
 Has completado exitosamente los pasos para preparar tu sistema operativo, crear tu primera clave SSH, subirla a AWS IAM, configurar tu fichero config de SSH, crear tu primer repositorio, subir código y comprobar visualmente cómo luce tu repositorio en AWS Code Commit. Ahora estás listo para comenzar a utilizar este poderoso servicio de alojamiento de repositorios de control de versiones en la nube.
 
