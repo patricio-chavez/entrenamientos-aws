@@ -64,5 +64,7 @@ Sigue este camino de aprendizaje paso a paso, completa los ejercicios prácticos
 <div align="center">
   <img src="imagenes/usuario_cloud_automation.png" alt="Usuario cloud_automation">
   	
-<p style="text-align: right;">This text is aligned to the right.</p>
+<div style="text-align: right;">
+  Este es un texto alineado a la derecha.
+</div>
 </div>
