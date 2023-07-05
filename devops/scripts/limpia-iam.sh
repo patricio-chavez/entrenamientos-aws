@@ -47,4 +47,19 @@ else
   exit 1
 fi
 
+# Eliminar la política para el AWS LoadBalancer Controller
+POLICY_NAME="AWSLoadBalancerControllerIAMPolicy"
+# Verificar si la política existe
+POLICY_ARN=$(aws iam list-policies --query "Policies[?PolicyName=='$POLICY_NAME'].Arn" --output text)
+
+if [[ -n "$POLICY_ARN" ]]; then
+  echo "La política $POLICY_NAME existe con ARN: $POLICY_ARN"
+  # Eliminar la política
+  echo "Eliminando la política $POLICY_NAME..."
+  aws iam delete-policy --policy-arn "$POLICY_ARN"
+  echo "La política $POLICY_NAME ha sido eliminada."
+else
+  echo "La política $POLICY_NAME no existe."
+fi
+
 echo "Proceso de limpieza de IAM completado."

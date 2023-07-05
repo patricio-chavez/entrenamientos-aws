@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Comando para crear un usuario en IAM
+# crear un usuario en IAM
 export NOMBRE_USUARIO="cloud_automation"
 echo "Creando usuario en IAM: $NOMBRE_USUARIO"
 aws iam create-user --user-name $NOMBRE_USUARIO
@@ -13,16 +13,20 @@ else
   exit 1
 fi
 
-# Comando para crear las llaves de acceso programático
+# Crear las llaves de acceso programático
 SALIDA=$(aws iam create-access-key --user-name cloud_automation --query 'AccessKey.[AccessKeyId,SecretAccessKey]' --output text)
 read -r ACCESS_KEY_ID SECRET_ACCESS_KEY <<< "$SALIDA"
 
-# Imprimo los valores solamente para verificar, en Producción no es recomendable mostrar las claves
+# Imprimir los valores solamente para verificar en el entrenamiento. En Producción no es recomendable mostrar las claves
 export ACCESS_KEY_ID=$ACCESS_KEY_ID
 export SECRET_ACCESS_KEY=$SECRET_ACCESS_KEY
 
 echo "Access Key ID: $ACCESS_KEY_ID"
 echo "Secret Access Key: $SECRET_ACCESS_KEY"
+
+# Crear la política para el AWS LoadBalancer Controller
+curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.4.7/docs/install/iam_policy.json
+aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy --policy-document file://iam_policy.json
 
 cd $HOME/entrenamientos-aws/devops/scripts
 

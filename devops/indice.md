@@ -33,10 +33,9 @@ Sigue este camino de aprendizaje paso a paso, completa los ejercicios prácticos
   - [Lanza un cluster](eks.md#Lanza-un-cluster-EKS)
   - [Aprovecha eksctl](eks.md#Aprovecha-eksctl)
   - [Configura el kubeconfig](eks.md#Configura-el-kubeconfig)
-  - [Instala tu primer EKS Addon](eks.md#Instala-tu-primer-EKS-Addon)
-
-- [AWS CloudFormation](cloudformation.md)
-  - [Primera plantilla](cloudformation.md#Primera-plantilla)
+  
+- [AWS LoadBalancer](alb.md)
+  - [Instala AWS ALB Controller](alb.md#Instala-AWS-ALB-Controller)
 
 - AWS CodeBuild
   - Crea tu primer proyecto

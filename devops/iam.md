@@ -51,5 +51,21 @@ Importante: Si por algún motivo no pudiste guardar las llaves en las variables,
 ```shell
 Ejecuta el código SOLO si deseas regenerar las llaves -> aws iam delete-access-key --user-name cloud_automation --access-key-id $(aws iam list-access-keys --user-name cloud_automation | jq -r '.AccessKeyMetadata[0].AccessKeyId'
 ```
+## Crea una política
+
+Crear una política de IAM que otorgará los permisos necesarios al AWS Load Balancer Controller para realizar llamadas a las API de AWS en su nombre. Esta política permitirá al controlador de balanceador de carga interactuar con los servicios de AWS requeridos para su funcionamiento cuando despliegues el ingreso a tu aplicación en EKS.
+
+Descarga la plantilla
+
+```shell
+curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.4.7/docs/install/iam_policy.json
+```
+
+Genera una política de IAM con la plantilla descargada
+
+```shell
+aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy --policy-document file://iam_policy.json
+```
+
 
 [Volver](indice.md)
