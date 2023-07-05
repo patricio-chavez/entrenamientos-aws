@@ -79,4 +79,4 @@ Al ejecutar este comando, obtendrás una salida que muestra detalles importantes
 
 Asegúrate de revisar los resultados para confirmar que el controlador de balanceador de carga está en funcionamiento y todas las réplicas están listas y disponibles. Si no se muestra el estado deseado o hay problemas con el despliegue, puedes utilizar otros comandos de diagnóstico, como kubectl logs, para obtener más información y resolver posibles problemas.
 
-[Volver](indice.md)
+Continua con [Amazon Route 53](route53.md). También puedes revisar nuevamente el paso anterior [AWS EKS](eks.md) o volver al [Indice](indice.md)

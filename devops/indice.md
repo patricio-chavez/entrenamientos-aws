@@ -46,7 +46,7 @@ Sigue este camino de aprendizaje paso a paso, completa los ejercicios prácticos
   - [ExternalDNS](route53.md#ExternalDNS)
   - [Crea una cuenta de servicio para ExternalDNS](route53.md#Crea-una-cuenta-de-servicio-para-ExternalDNS)
 
-- AWS CodeBuild
+- [AWS CodeBuild](codebuild.md)
   - Crea tu primer proyecto
   - Verifica el ciclo de vida
   - Revisa los logs

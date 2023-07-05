@@ -31,7 +31,6 @@ export ESPACIO_NOMBRES_DNS='external-dns'
 kubectl create namespace $ESPACIO_NOMBRES_DNS
 ```
 
-
 Para crear una cuenta de servicio en tu clúster de Amazon EKS y asignarle una política de IAM, puedes utilizar el siguiente comando:
 
 ```shell
@@ -43,5 +42,4 @@ eksctl create iamserviceaccount --cluster $CLUSTER --name $NOMBRE_CUENTA_SERVICI
 ```
 El parámetro --approve indica que se debe aprobar la creación de la cuenta de servicio sin requerir confirmación adicional.
 
-
-[Volver](indice.md)
+Continua con [AWS CodeBuild](codebuild.md). También puedes revisar nuevamente el paso anterior [Elastic Load Balancing](alb.md) o volver al [Indice](indice.md)

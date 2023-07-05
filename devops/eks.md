@@ -98,4 +98,4 @@ Puedes verificar la creación con la interfaz gráfica
   <img src="imagenes/oidc-iam.png" alt="OIDC IAM">
 </div>
 
-[Volver](indice.md)
+Continua con [Elastic Load Balancing](alb.md). También puedes revisar nuevamente el paso anterior [AWS Secrets Manager](secretsmanager.md) o volver al [Indice](indice.md)
