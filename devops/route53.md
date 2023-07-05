@@ -7,7 +7,7 @@ Este servicio te permite asociar tus nombres de dominio a diferentes recursos de
 
 Además de las funcionalidades de DNS tradicionales, Amazon Route 53 también ofrece servicios avanzados, como la administración de zonas alojadas privadas, la capacidad de monitorear y registrar la salud de tus recursos con healthchecks y la integración con otros servicios de AWS para una gestión y configuración automatizadas.
 
-### Instala ExternalDNS
+### ExternalDNS
 
 El controlador ExternalDNS es una herramienta que permite la automatización de la configuración de registros DNS externos. Con ExternalDNS, puedes asociar automáticamente los nombres de dominio de tus servicios en Kubernetes con registros DNS externos, como aquellos administrados por Amazon Route 53.
 
@@ -74,3 +74,5 @@ export CLUSTER='cluster-eks'
 eksctl create iamserviceaccount --cluster $CLUSTER --name $NOMBRE_CUENTA_SERVICIO_DNS --namespace $ESPACIO_NOMBRES_DNS --attach-policy-arn $ARN_POLICY_DNS --approve --override-existing-serviceaccounts
 ```
 El parámetro --approve indica que se debe aprobar la creación de la cuenta de servicio sin requerir confirmación adicional.
+
+[Volver](indice.md)
