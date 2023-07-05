@@ -44,12 +44,4 @@ chmod +x prepara-cloudshell.sh && ./prepara-cloudshell.sh && cd $HOME
 
 Recuerda que puedes consultar la documentación oficial de AWS, buscar en la comunidad de desarrolladores y contar con el apoyo de todos tus compañeros de Realnaut si tienes alguna pregunta o enfrentas algún desafío durante el entrenamiento.
 
-<div style="display: flex; justify-content: space-between;">
-  <a href="indice.md" style="align-self: flex-start;">Volver</a>
-  <a href="codecommit.md" style="align-self: flex-end;">Continuar</a>
-</div>
-
-<div style="display: flex; justify-content: space-between;">
-  <a href="indice.md" style="margin-right: auto;">Volver</a>
-  <a href="siguiente.md" style="margin-left: auto;">Continuar</a>
-</div>
+[Volver](indice.md)
