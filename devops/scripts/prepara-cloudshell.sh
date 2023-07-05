@@ -1,11 +1,17 @@
 #!/bin/bash
 
-# Verifica si curl y jq están instalados
-if ! command -v curl >/dev/null 2>&1 || ! command -v jq >/dev/null 2>&1; then
-  echo "Instalando curl y jq..."
-  sudo apt-get update
-  sudo apt-get install curl jq -y
-fi
+
+# Actualiza los paquetes sin solicitar confirmación
+sudo yum update -y
+
+# Instala openssl
+sudo yum install openssl -y
+
+# Instala curl
+sudo yum install curl -y
+
+# Instala jq
+sudo yum install openssl -y
 
 # Descarga y configura eksctl
 echo "Descargando eksctl..."
@@ -18,6 +24,15 @@ sudo mv /tmp/eksctl /usr/local/bin
 # Verifica la versión de eksctl instalada
 echo "Versión de eksctl instalada:"
 eksctl version
+
+# Descarga helm
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+
+# Modifica los permisos del fichero
+chmod 700 get_helm.sh
+
+# Realiza la verificación de seguridad con openssl e instala HELM
+./get_helm.sh
 
 # Configura usuario de git
 echo "Configurando git..."
