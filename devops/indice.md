@@ -34,8 +34,15 @@ Sigue este camino de aprendizaje paso a paso, completa los ejercicios prácticos
   - [Aprovecha eksctl](eks.md#Aprovecha-eksctl)
   - [Configura el kubeconfig](eks.md#Configura-el-kubeconfig)
   
-- [AWS LoadBalancer](alb.md)
-  - [Instala AWS ALB Controller](alb.md#Instala-AWS-ALB-Controller)
+- [Elastic Load Balancing](alb.md)
+  - [AWS ALB Controller](alb.md#AWS-ALB-Controller)
+  - [Crea una cuenta de servicio para ALB Controller](alb.md#Crea-una-cuenta-de-servicio-para-ALB-Controller)
+  - [Configura el repositorio Helm EKS](alb.md#Configura-el-repositorio-Helm-EKS)
+  - [Despliega el controlador](alb#Despliega-el-controlador)
+
+- [Amazon Route 53](route53.md)
+  - [ExternalDNS](route53.md#ExternalDNS)
+  - [Crea una cuenta de servicio para ExternalDNS](route53.md#Crea-una-cuenta-de-servicio-para-ExternalDNS)
 
 - AWS CodeBuild
   - Crea tu primer proyecto
