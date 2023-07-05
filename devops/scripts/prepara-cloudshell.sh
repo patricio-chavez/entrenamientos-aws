@@ -34,6 +34,9 @@ chmod 700 get_helm.sh
 # Realiza la verificación de seguridad con openssl e instala HELM
 ./get_helm.sh
 
+# Verifica la versión de helm instalada
+helm version
+
 # Configura usuario de git
 echo "Configurando git..."
 git config --global user.email "$(whoami)@entrenamientos-aws.com"
@@ -41,4 +44,4 @@ git config --global user.name "$(whoami)"
 
 # Inicia el entrenamiento desde el HOME
 cd $HOME
-echo "Ya está todo preparado para que empieces a entrenar!"
+echo "¡Ya está todo preparado para que empieces a entrenar!"
