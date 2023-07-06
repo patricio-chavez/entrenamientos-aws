@@ -14,7 +14,7 @@ Antes de comenzar, es importante tener en cuenta que en Kubernetes se siguen pr�
 
 Por el momento, nos centraremos en los objetos y despliegues necesarios para alojar nuestra aplicación estática y servir su contenido a través de Internet.
 
-### Crear un espacio de nombres
+### Crea un espacio de nombres
 
 Para comenzar muévete al directorio $HOME e ingresa al directorio mi-repositorio
 
@@ -28,22 +28,247 @@ Importante: Si no lo encuentras puedes volver a clonarlo copiando el enlace de S
 </div>
 
 
-Luego define variables
+Luego define variables para reutilizarlas
 
 ```shell
-export NS_APLICACION="app-estatica"
+export ESPACIO_NOMBRES_APLICACION_MANUAL="despliegue-manual"
+export SERVICIO_APLICACION_MANUAL="servicio-aplicacion-estatica"
+export NOMBRE_APLICACION_MANUAL="aplicacion-estatica"
+export NOMBRE_DESPLIEGUE="aplicacion-estatica"
+export CONFIGMAP_APLICACION_MANUAL="aplicacion-estatica"
+export NOMBRE_INGRESO="ingreso-aplicacion-estatica"
+export DOMINIO=$(aws route53 list-hosted-zones --query 'HostedZones[0]'.Name | cut -d'"' -f2 | sed 's/\.$//')
+export HOSTNAME_APLICACION="$NOMBRE_APLICACION_MANUAL.$DOMINIO"
 ```
 
-Crea un espacio de nombres dedicado para nuestra aplicación estática. Esto nos permitirá aislar y organizar los recursos relacionados con nuestra aplicación.
-
-Crea un fichero que más tarde subirás al repositorio para reutilizarlo.
+Prepara la descripción de un espacio de nombres dedicado para nuestra aplicación estática. Esto nos permitirá aislar y organizar los recursos relacionados con nuestra aplicación.
 
 ```shell
-cat << EOF > namespace.yaml
+cat << EOF > namespace-aplicacion-estatica.yaml
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: $NS_APLICACION
+  name: $ESPACIO_NOMBRES_APLICACION_MANUAL
 EOF
 ```
 
+Despliega el espacio de nombres con el siguiente comando. 
+
+```shell
+kubectl apply -f namespace-aplicacion-estatica.yaml
+```
+
+Dado que estamos describiendo el estado deseado si vuelves a ejecutar el mismo comando no dará error ni duplicará el espacio de nombres dado que Kubernetes entiende que el estado deseado es el estado actual. Repite el comando anterior.
+
+```shell
+kubectl apply -f namespace-aplicacion-estatica.yaml
+```
+
+Deberías recibir un mensaje indicando que no hubo cambios.
+
+### Crea un servicio
+
+Un servicio en Kubernetes es un objeto que se utiliza para exponer una aplicación o conjunto de pods dentro del clúster. Proporciona una forma de acceder a los pods de manera transparente y estable, independientemente de su ubicación o cambios en su ciclo de vida.
+
+El servicio se asocia a uno o varios pods a través de selectores de etiquetas (labels). Los pods seleccionados se agrupan lógicamente y el servicio les asigna una dirección IP y un nombre DNS único dentro del clúster. Esto permite que otros componentes del clúster se comuniquen con los pods utilizando el nombre del servicio.
+
+Los servicios en Kubernetes tienen ciclos de vida independientes de los pods. Incluso si los pods se escalan a cero o se recrean, el servicio sigue existiendo, lo que brinda una capa de abstracción y estabilidad en el acceso a la aplicación.
+
+En nuestro caso, utilizaremos el tipo de servicio NodePort en combinación con un balanceador de carga externo (ALB) para exponer nuestra aplicación estática al tráfico externo. Esto nos permite enrutar las solicitudes hacia los nodos del clúster y distribuir la carga de manera eficiente.
+
+Crea un nuevo fichero para describir el servicio asociado a la aplicación estática.
+
+```shell
+cat << EOF > servicio-aplicacion-estatica.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: $SERVICIO_APLICACION_MANUAL
+  namespace: $ESPACIO_NOMBRES_APLICACION_MANUAL
+spec:
+  type: NodePort
+  selector:
+    app: nodejs
+  ports:
+    - name: http
+      port: 3000
+      targetPort: 3000
+      nodePort: 30053
+EOF
+```
+
+```shell
+kubectl apply -f servicio-aplicacion-estatica.yaml
+```
+
+### Crea un despliegue
+
+Un despliegue (Deployment) en Kubernetes es un objeto que define cómo se ejecutan y se administran los pods en el clúster. Proporciona una forma declarativa de gestionar la creación, actualización y escalado de los pods que forman parte de una aplicación.
+
+El despliegue se encarga de mantener un conjunto deseado de réplicas de los pods definidos. Si algún pod falla o se elimina, el despliegue automáticamente creará nuevos pods para reemplazarlos, asegurando que el número de réplicas especificado siempre esté disponible.
+
+Además, el despliegue permite realizar actualizaciones controladas de la aplicación sin tiempo de inactividad. Puedes aplicar cambios en la configuración o la imagen del contenedor, y el despliegue se encargará de crear nuevos pods con la nueva versión y eliminar gradualmente los pods antiguos.
+
+```shell
+cat << EOF > despliegue-aplicacion-estatica.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: $NOMBRE_DESPLIEGUE
+  namespace: $ESPACIO_NOMBRES_APLICACION_MANUAL
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodejs
+  template:
+    metadata:
+      labels:
+        app: nodejs
+    spec:
+      containers:
+        - name: nodejs
+          image: node:14-alpine
+          command: ["node"]
+          args: ["/app/index.js"]
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: app
+              mountPath: /app
+          env:
+            - name: RANDOM_INTERVAL
+              value: "200"
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
+      volumes:
+        - name: app
+          configMap:
+            name: $CONFIGMAP_APLICACION_MANUAL
+            items:
+              - key: index.js
+                path: index.js
+EOF
+
+```
+
+Como siempre, ahora ejecuta el comando para aplicar los cambios.
+
+```shell
+kubectl applyc -f despliegue-aplicacion-estatica.yaml
+```
+
+### Crea un ConfigMap
+
+Un ConfigMap en Kubernetes es un objeto que se utiliza para almacenar y gestionar la configuración de la aplicación. Permite separar la configuración de la aplicación del código fuente, lo que facilita la administración y la personalización de la configuración sin necesidad de volver a generar ni reconstruir la imagen del contenedor.
+
+El ConfigMap almacena datos clave-valor y se puede utilizar para configurar variables de entorno, argumentos de línea de comandos o archivos de configuración dentro de los pods de la aplicación.
+
+Tener desacoplada la configuración permite mayor reutilización, por ejemplo, cuando se usa la misma imagen para distintos ambientes que por lo general requieren distintas configuraciones.
+
+En nuestro caso utilizaremos el ConfigMap para montar un volumen en el contenedor y allí dejaremos el código de nuestra aplicación estática, dado que es un nodejs, el ficher que montaremos será el index.js.
+
+Comienza con un fichero que no tenga demasiada complejidad y luego si lo deseas puedes ir modificándolo.
+
+```shell
+cat << EOF > configmap-aplicacion-estatica.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: $CONFIGMAP_APLICACION_MANUAL
+  namespace: $ESPACIO_NOMBRES_APLICACION_MANUAL
+data:
+  index.js: |-
+    const http = require('http');
+    const os = require('os');
+
+    const hostname = os.hostname();
+
+    let intervalId;
+
+    const server = http.createServer((req, res) => {
+      res.writeHead(200, { 'Content-Type': 'text/html' });
+      res.write(`
+        <html>
+          <head>
+            <title>Mi primera aplicación estática</title>            
+          </head>
+          <body>
+            <h1 style="text-align: center;">Mi primera aplicación estática</h1>                      
+          <footer style="position: fixed; bottom: 10px; left: 0; right: 0;">
+            <div style="text-align: center;">
+              <p style="margin: 0;">Content served by pod: ${hostname}</p>
+            </div>
+          </footer>
+          </body>
+        </html>
+      `);
+      res.end();
+    });
+
+    server.listen(3000, () => {
+      console.log(`Server running at http://localhost:3000/`);
+    });
+EOF
+```
+
+Aplica la descripción del ConfigMap 
+
+```shell
+kubectl apply -f configmap-aplicacion-estatica.yaml
+```
+
+### Crea un ingreso
+
+En Kubernetes, un ingreso (Ingress) es un objeto que actúa como un controlador de tráfico para enrutar las solicitudes de entrada a los servicios adecuados dentro del clúster. Proporciona una capa de entrada para el tráfico externo y permite configurar reglas de enrutamiento basadas en la URL, los encabezados u otros criterios.
+
+El Ingress actúa como un punto de entrada único para varias aplicaciones y servicios dentro del clúster. Permite exponer servicios internos al mundo exterior y controlar el acceso a través de reglas de enrutamiento flexibles.
+
+```shell
+cat << EOF > ingreso-aplicacion-estatica.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: $NOMBRE_INGRESO
+  namespace: $ESPACIO_NOMBRES_APLICACION_MANUAL
+  annotations:  
+    provider: alb
+    kubernetes.io/ingress.class: alb   
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/group.name: ingress-demo
+    alb.ingress.kubernetes.io/target-type: instance    
+    alb.ingress.kubernetes.io/healthcheck-protocol: HTTP
+    alb.ingress.kubernetes.io/healthcheck-port: traffic-port
+    alb.ingress.kubernetes.io/healthcheck-interval-seconds: '15'
+    alb.ingress.kubernetes.io/healthcheck-timeout-seconds: '5'
+    alb.ingress.kubernetes.io/success-codes: '200'
+    alb.ingress.kubernetes.io/healthy-threshold-count: '2'
+    alb.ingress.kubernetes.io/unhealthy-threshold-count: '2'    
+    external-dns.alpha.kubernetes.io/hostname: $HOSTNAME_APLICACION
+spec:
+  rules:
+    - host: $HOSTNAME_APLICACION
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: $SERVICIO_APLICACION_MANUAL
+                port:
+                  number: 3000
+EOF
+```
+
+Ahora crea el ingreso utilizando nuevamente kubectl.
+
+```shell
+kubectl apply -f ingreso-aplicacion-estatica.yaml
+```
+
+Continua con [AWS CodeBuild](codebuild.md). También puedes revisar nuevamente el paso anterior [Amazon Route 53](route53.md) o volver al [Indice](indice.md)

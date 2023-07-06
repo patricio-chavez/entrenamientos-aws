@@ -186,4 +186,4 @@ Y para obtener mayores detalles puedes "describir" el deployment o despliegue me
 ```shell
 kubectl describe deployment external-dns -n $ESPACIO_NOMBRES_DNS
 ```
-Continua con [AWS CodeBuild](codebuild.md). También puedes revisar nuevamente el paso anterior [Elastic Load Balancing](alb.md) o volver al [Indice](indice.md)
+Continua con [Aplicación contenerizada con despliegue manual](appmanual.md). También puedes revisar nuevamente el paso anterior [Elastic Load Balancing](alb.md) o volver al [Indice](indice.md)

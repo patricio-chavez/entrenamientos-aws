@@ -51,6 +51,9 @@ Sigue este camino de aprendizaje paso a paso, completa los ejercicios prácticos
 
 - [Aplicación contenerizada con despliegue manual](appmanual.md)
   - [Crea un espacio de nombres](appmanual.md#Crea-un-espacio-de-nombres)
+  - [Crea un servicio](appmanual.md#Crea-un-servicio)
+  - [Crea un despliegue](appmanual.md#Crea-un-despliegue)
+  - [Crea un ingreso](appmanual.md#Crea-un-ingreso)
 
 - [AWS CodeBuild](codebuild.md)
   - Crea tu primer proyecto
