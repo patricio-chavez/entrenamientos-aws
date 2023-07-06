@@ -113,41 +113,48 @@ Además, el despliegue permite realizar actualizaciones controladas de la aplica
 
 ```shell
 cat << EOF > despliegue-aplicacion-estatica.yaml
-apiVersion: v1
-kind: ConfigMap
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: $CONFIGMAP_APLICACION_MANUAL
+  name: $NOMBRE_DESPLIEGUE
   namespace: $ESPACIO_NOMBRES_APLICACION_MANUAL
-data:
-  index.js: |
-    const http = require('http');
-    const os = require('os');
-
-    const hostname = os.hostname();
-
-    let intervalId;
-
-    const server = http.createServer((req, res) => {
-      res.writeHead(200, { 'Content-Type': 'text/html' });
-      res.write('<html>');
-      res.write('  <head>');
-      res.write('    <title>Mi primera aplicación estática</title>');
-      res.write('  </head>');
-      res.write('  <body>');
-      res.write('    <h1 style="text-align: center;">Mi primera aplicación estática</h1>');
-      res.write('    <footer style="position: fixed; bottom: 10px; left: 0; right: 0;">');
-      res.write('      <div style="text-align: center;">');
-      res.write(`        <p style="margin: 0;">Content served by pod: ${hostname}</p>`);
-      res.write('      </div>');
-      res.write('    </footer>');
-      res.write('  </body>');
-      res.write('</html>');
-      res.end();
-    });
-
-    server.listen(3000, () => {
-      console.log('Server running at http://localhost:3000/');
-    });
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodejs
+  template:
+    metadata:
+      labels:
+        app: nodejs
+    spec:
+      containers:
+        - name: nodejs
+          image: node:14-alpine
+          command: ["node"]
+          args: ["/app/index.js"]
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: app
+              mountPath: /app
+          env:
+            - name: RANDOM_INTERVAL
+              value: "200"
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
+      volumes:
+        - name: app
+          configMap:
+            name: $CONFIGMAP_APLICACION_MANUAL
+            items:
+              - key: index.js
+                path: index.js
 EOF
 
 ```
@@ -175,8 +182,8 @@ cat << EOF > configmap-aplicacion-estatica.yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: $CONFIGMAP_APLICACION_MANUAL
-  namespace: $ESPACIO_NOMBRES_APLICACION_MANUAL
+  name: CONFIGMAP_APLICACION_MANUAL
+  namespace: ESPACIO_NOMBRES_APLICACION_MANUAL
 data:
   index.js: |-
     const http = require('http');
