@@ -182,40 +182,36 @@ cat << EOF > configmap-aplicacion-estatica.yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: CONFIGMAP_APLICACION_MANUAL
-  namespace: ESPACIO_NOMBRES_APLICACION_MANUAL
+  name: $CONFIGMAP_APLICACION_MANUAL
+  namespace: $ESPACIO_NOMBRES_APLICACION_MANUAL
 data:
   index.js: |-
     const http = require('http');
-    const os = require('os');
-
+    const os = require('os');    
     const hostname = os.hostname();
-
     let intervalId;
-
     const server = http.createServer((req, res) => {
       res.writeHead(200, { 'Content-Type': 'text/html' });
-      res.write(`
+      res.write('
         <html>
           <head>
             <title>Mi primera aplicación estática</title>            
           </head>
           <body>
             <h1 style="text-align: center;">Mi primera aplicación estática</h1>                      
-          <footer style="position: fixed; bottom: 10px; left: 0; right: 0;">
-            <div style="text-align: center;">
-              <p style="margin: 0;">Content served by pod: ${hostname}</p>
-            </div>
-          </footer>
+            <footer style="position: fixed; bottom: 10px; left: 0; right: 0;">
+              <div style="text-align: center;">
+                <p style="margin: 0;">Content served by pod: \`\${hostname}\`</p>
+              </div>
+            </footer>
           </body>
         </html>
-      `);
+      ');
       res.end();
-    });
-
-    server.listen(3000, () => {
-      console.log(`Server running at http://localhost:3000/`);
-    });
+      });
+      server.listen(3000, () => {
+        console.log('Server running at http://localhost:3000/');
+      });
 EOF
 ```
 
