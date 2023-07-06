@@ -48,8 +48,7 @@ cat << EOF > external-dns-policy.json
     {
       "Effect": "Allow",
       "Action": [
-        "route53:ListHostedZones",
-        "route53:ListResourceRecordSets"
+        "route53:ListHostedZones"
       ],
       "Resource": [
         "*"

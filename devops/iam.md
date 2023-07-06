@@ -90,7 +90,11 @@ cat << EOF > external-dns-policy.json
     {
       "Effect": "Allow",
       "Action": [
-        "route53:ListHostedZones",Continua con AWS Secrets Manager. También puedes revisar nuevamente el paso anterior AWS Code Commit o volver al Indice
+        "route53:ListHostedZones"
+      ],
+      "Resource": [
+        "*"
+      ]
     }
   ]
 }
