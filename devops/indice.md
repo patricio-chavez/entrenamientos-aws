@@ -49,6 +49,9 @@ Sigue este camino de aprendizaje paso a paso, completa los ejercicios prácticos
   - [Asocia el cluster role de External DNS](route53#Asocia-el-cluster-role-de-External-DNS)
   - [Lista las zonas hosteadas en Route 53](route53#Lista-las-zonas-hosteadas-en-Route-53)
 
+- [Aplicación contenerizada con despliegue manual](appmanual.md)
+  - [Crea un espacio de nombres](appmanual.md#Crea-un-espacio-de-nombres)
+
 - [AWS CodeBuild](codebuild.md)
   - Crea tu primer proyecto
   - Verifica el ciclo de vida
