@@ -53,8 +53,8 @@ roleRef:
   name: external-dns
 subjects:
   - kind: ServiceAccount
-    name: external-dns
-    namespace: ${EXTERNALDNS_NS}
+    name: $NOMBRE_CUENTA_SERVICIO_DNS
+    namespace: $ESPACIO_NOMBRES_DNS
 EOF
 kubectl apply -f ExternalDNS-cluster-role-binding.yaml
 
@@ -66,7 +66,7 @@ aws route53 list-hosted-zones --query 'HostedZones[].Name'
 # Exportar solo la primera zona listada
 echo "Exportando el nombre de la primera zona y dominio..."
 export NOMBRE_ZONA=$(aws route53 list-hosted-zones --query 'HostedZones[0]'.Name)
-export DOMINIO=ana-solution.com=$(aws route53 list-hosted-zones --query 'HostedZones[0]'.Name | cut -d'"' -f2 | sed 's/\.$//')
+export DOMINIO=$(aws route53 list-hosted-zones --query 'HostedZones[0]'.Name | cut -d'"' -f2 | sed 's/\.$//')
 
 echo "NOMBRE_ZONA=$NOMBRE_ZONA"
 echo "DOMINIO=$DOMINIO"
