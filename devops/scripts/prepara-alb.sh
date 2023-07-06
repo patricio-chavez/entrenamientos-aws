@@ -32,9 +32,27 @@ helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
   --set serviceAccount.create=false \
   --set serviceAccount.name=aws-load-balancer-controller
 
-# Verificar el estado del deployment
-echo "Verificando el deployment..."
-kubectl get deployment -n kube-system aws-load-balancer-controller
+# Verificar la instalación
+echo "Verificando el despliegue..."
+contador=0
+TIMEOUT=600  # Límite de tiempo en segundos
+INTERVALO=5  # Intervalo de espera en segundos
+
+while [ $contador -lt $TIMEOUT ]; do
+    status=$(kubectl get deployment aws-load-balancer-controller -n kube-system -o jsonpath='{.status.conditions[?(@.type=="Available")].status}')
+    if [ "$status" == "True" ]; then
+        echo "El despliegue de External DNS ya está listo."
+        break
+    fi
+    echo "Esperando la disponibilidad del despliegue de External DNS..."
+    sleep $INTERVALO
+    contador=$((contador + INTERVALO))
+done
+
+if [ $contador -ge $TIMEOUT ]; then
+    echo "Error: El despliegue de External DNS superó el tiempo límite de espera."
+    exit 1
+fi
 
 # Volver al directorio original
 cd $HOME/entrenamientos-aws/devops/scripts
