@@ -131,9 +131,43 @@ El Account ID es el identificador de nuestra cuenta de AWS. Se puede verificar s
 export AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
 echo "AWS_ACCOUNT_ID=$AWS_ACCOUNT_ID"
 ```
-           
-      - eksctl create iamserviceaccount --cluster ${EKS_CLUSTER_NAME} --name "external-dns" --namespace ${EXTERNALDNS_NS} --attach-policy-arn ${POLICY_ARN} --approve --override-existing-serviceaccounts
-      - kubectl get clusterroles/external-dns >/dev/null 2>&1 && echo "Cluster Role already created" || ./codebuild/dns/configure_external-dns-clusterrole.sh
-      - ./codebuild/dns/configure_external-dns.sh
+
+### Configura ExternalDNS
+
+
+```shell
+cat << EOF | kubectl apply -f -
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: external-dns
+  namespace: $ESPACIO_NOMBRES_DNS
+  labels:
+    app.kubernetes.io/name: external-dns
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: external-dns
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: external-dns
+    spec:
+      serviceAccountName: $NOMBRE_CUENTA_SERVICIO_DNS
+      containers:
+        - name: external-dns
+          image: k8s.gcr.io/external-dns/external-dns:v0.12.2
+          args:
+            - --source=ingress
+            - --source=service            
+            - --provider=aws
+            - --policy=sync
+            - --aws-zone-type=public
+            - --registry=txt
+            - --txt-owner-id=external-dns
+EOF
+```
 
 Continua con [AWS CodeBuild](codebuild.md). También puedes revisar nuevamente el paso anterior [Elastic Load Balancing](alb.md) o volver al [Indice](indice.md)
