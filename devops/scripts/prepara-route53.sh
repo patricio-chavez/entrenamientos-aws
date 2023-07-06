@@ -3,7 +3,6 @@
 # Variables necesarias
 echo "Configurando variables para EKS..."
 export CLUSTER='cluster-eks'
-export AWS_REGION='us-east-1'
 export ESPACIO_NOMBRES_DNS='external-dns'
 export NOMBRE_CUENTA_SERVICIO_DNS='external-dns'
 
@@ -59,8 +58,64 @@ subjects:
 EOF
 kubectl apply -f ExternalDNS-cluster-role-binding.yaml
 
-# Listas las zonas hosteadas en Route 53
+# Listar las zonas hosteadas en Route 53
 echo "Listando todas las zonas hosteadas en Route 53..."
 aws route53 list-hosted-zones --query 'HostedZones[].Name'
 
 
+# Exportar solo la primera zona listada
+echo "Exportando el nombre de la primera zona y dominio..."
+export NOMBRE_ZONA=$(aws route53 list-hosted-zones --query 'HostedZones[0]'.Name)
+export DOMINIO=ana-solution.com=$(aws route53 list-hosted-zones --query 'HostedZones[0]'.Name | cut -d'"' -f2 | sed 's/\.$//')
+
+echo "NOMBRE_ZONA=$NOMBRE_ZONA"
+echo "DOMINIO=$DOMINIO"
+
+# Obtener el AWS Account ID
+echo "Obteniendo el AWS Account ID..."
+export AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+echo "AWS_ACCOUNT_ID=$AWS_ACCOUNT_ID"
+
+# Configurar ExternalDNS
+echo "Configurando ExternalDNS..."
+cat << EOF | kubectl apply -f -
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: external-dns
+  namespace: $ESPACIO_NOMBRES_DNS
+  labels:
+    app.kubernetes.io/name: external-dns
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: external-dns
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: external-dns
+    spec:
+      serviceAccountName: $NOMBRE_CUENTA_SERVICIO_DNS
+      containers:
+        - name: external-dns
+          image: k8s.gcr.io/external-dns/external-dns:v0.12.2
+          args:
+            - --source=ingress
+            - --source=service            
+            - --provider=aws
+            - --policy=sync
+            - --aws-zone-type=public
+            - --registry=txt
+            - --txt-owner-id=external-dns
+EOF
+
+# Verificar la instalación
+echo "Verificando el despliegue..."
+kubectl get deployment external-dns -n $ESPACIO_NOMBRES_DNS 
+
+# Volver al directorio original
+cd $HOME/entrenamientos-aws/devops/scripts
+
+echo "Proceso de preparación de Route 53 completado."

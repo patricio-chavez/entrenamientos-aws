@@ -134,6 +134,9 @@ echo "AWS_ACCOUNT_ID=$AWS_ACCOUNT_ID"
 
 ### Configura ExternalDNS
 
+El comando kubectl apply -f - se utiliza para aplicar la configuración de Kubernetes desde un fichero YAML o JSON directamente en la línea de comandos, sin necesidad de crear un fichero físico. Esto se conoce como uso "on-the-fly" o en tiempo real. Simplemente copias y pegas la configuración en la terminal y la ingresas como entrada estándar (stdin) al comando kubectl apply. Esto proporciona una forma rápida y conveniente de aplicar la configuración sin la necesidad de crear ficheros intermedios en el proceso.
+
+Así que aquí usa la técnica tomando la salida estándar para configurar ExternalDNS:
 
 ```shell
 cat << EOF | kubectl apply -f -
@@ -170,4 +173,17 @@ spec:
 EOF
 ```
 
+### Verifica el progreso
+
+Puedes utilizar nuevamente kubectl para revisar el progresa de la la instalación mediante el siguiente comando:
+
+```shell
+kubectl get deployment external-dns -n $ESPACIO_NOMBRES_DNS 
+```
+
+Y para obtener mayores detalles puedes "describir" el deployment o despliegue mediante el siguiente comando:
+
+```shell
+kubectl describe deployment external-dns -n $ESPACIO_NOMBRES_DNS
+```
 Continua con [AWS CodeBuild](codebuild.md). También puedes revisar nuevamente el paso anterior [Elastic Load Balancing](alb.md) o volver al [Indice](indice.md)
