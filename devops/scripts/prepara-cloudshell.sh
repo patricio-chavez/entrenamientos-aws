@@ -34,8 +34,9 @@ chmod 700 get_helm.sh
 # Realiza la verificación de seguridad con openssl e instala HELM
 ./get_helm.sh
 
-# Verifica la versión de helm instalada
+# Verifica la versión de helm instalada y limpia temporales
 helm version
+rm -f get_helm.sh
 
 # Configura usuario de git
 echo "Configurando git..."

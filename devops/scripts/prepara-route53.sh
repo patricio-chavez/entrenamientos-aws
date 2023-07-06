@@ -37,6 +37,7 @@ rules:
     verbs: ["get","watch","list"]
 EOF
 kubectl apply -f ExternalDNS-cluster-role.yaml
+rm -f ExternalDNS-cluster-role.yaml
 
 # Asociar el cluster role de ExternalDNS
 echo "Asociando el rol para ExternalDNS..."
@@ -57,6 +58,7 @@ subjects:
     namespace: $ESPACIO_NOMBRES_DNS
 EOF
 kubectl apply -f ExternalDNS-cluster-role-binding.yaml
+rm -f ExternalDNS-cluster-role-binding.yaml
 
 # Listar las zonas hosteadas en Route 53
 echo "Listando todas las zonas hosteadas en Route 53..."
@@ -113,7 +115,25 @@ EOF
 
 # Verificar la instalación
 echo "Verificando el despliegue..."
-kubectl get deployment external-dns -n $ESPACIO_NOMBRES_DNS 
+contador=0
+TIMEOUT=600  # Límite de tiempo en segundos
+INTERVALO=5  # Intervalo de espera en segundos
+
+while [ $contador -lt $TIMEOUT ]; do
+    status=$(kubectl get deployment external-dns -n $ESPACIO_NOMBRES_DNS -o jsonpath='{.status.conditions[?(@.type=="Available")].status}')
+    if [ "$status" == "True" ]; then
+        echo "El despliegue de External DNS ya está listo."
+        break
+    fi
+    echo "Esperando la disponibilidad del despliegue de External DNS..."
+    sleep $INTERVALO
+    contador=$((contador + INTERVALO))
+done
+
+if [ $contador -ge $TIMEOUT ]; then
+    echo "Error: El despliegue de External DNS superó el tiempo límite de espera."
+    exit 1
+fi
 
 # Volver al directorio original
 cd $HOME/entrenamientos-aws/devops/scripts
