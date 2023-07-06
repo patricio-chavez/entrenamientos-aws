@@ -42,7 +42,7 @@ eksctl create iamserviceaccount --cluster $CLUSTER --name $NOMBRE_CUENTA_SERVICI
 ```
 El parámetro --approve indica que se debe aprobar la creación de la cuenta de servicio sin requerir confirmación adicional.
 
-## Crea un role para ExternalDNS
+### Crea un role para ExternalDNS
 
 En Kubernetes, un cluster role es un objeto de autorización que define un conjunto de permisos y reglas de acceso a nivel de clúster. Proporciona autorización y controla el acceso a recursos y operaciones en todo el clúster Kubernetes.
 
@@ -66,7 +66,13 @@ rules:
 EOF
 ```
 
-## Asocia el cluster role de External DNS
+Crear el cluster role con kubectl
+
+```shell
+kubectl apply -f ExternalDNS-cluster-role.yaml
+```
+
+### Asocia el cluster role de External DNS
 
 El ClusterRoleBinding establece una relación entre el ClusterRole y las identidades a las que se les conceden los permisos asociados. Estas identidades pueden ser usuarios individuales, grupos de usuarios o servicios del clúster.
 
@@ -91,5 +97,43 @@ subjects:
 EOF
 ```
 
+Asocia el cluster role (role binding) con kubectl
+
+```shell
+kubectl apply -f ExternalDNS-cluster-role-binding.yaml
+```
+
+### Lista las zonas hosteadas en Route 53
+
+Puedes utilizar el siguiente comando de AWS CLI para listar las zonas hosteadas en Route 53:
+
+```shell
+aws route53 list-hosted-zones --query 'HostedZones[].Name'
+```
+
+Este comando te devolverá una lista de nombres de las zonas hosteadas en Route 53. Puedes personalizar aún más la salida utilizando filtros y consultas adicionales según tus necesidades.
+
+Es posible que haya más de una zona hosteada así que para nuestro entrenamiento simplemente tomaremos la primera y asignaremos las salidas a variables:
+
+```shell
+export NOMBRE_ZONA=$(aws route53 list-hosted-zones --query 'HostedZones[0]'.Name)
+export DOMINIO=ana-solution.com=$(aws route53 list-hosted-zones --query 'HostedZones[0]'.Name | cut -d'"' -f2 | sed 's/\.$//')
+
+echo "NOMBRE_ZONA=$NOMBRE_ZONA"
+echo "DOMINIO=$DOMINIO"
+```
+
+### Obtiene el AccountID
+
+El Account ID es el identificador de nuestra cuenta de AWS. Se puede verificar su valor desde la consola de administración de AWS, en parte superior derecha, y también a través de la AWS CLI con el siguiente comando:
+
+```shell
+export AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+echo "AWS_ACCOUNT_ID=$AWS_ACCOUNT_ID"
+```
+           
+      - eksctl create iamserviceaccount --cluster ${EKS_CLUSTER_NAME} --name "external-dns" --namespace ${EXTERNALDNS_NS} --attach-policy-arn ${POLICY_ARN} --approve --override-existing-serviceaccounts
+      - kubectl get clusterroles/external-dns >/dev/null 2>&1 && echo "Cluster Role already created" || ./codebuild/dns/configure_external-dns-clusterrole.sh
+      - ./codebuild/dns/configure_external-dns.sh
 
 Continua con [AWS CodeBuild](codebuild.md). También puedes revisar nuevamente el paso anterior [Elastic Load Balancing](alb.md) o volver al [Indice](indice.md)

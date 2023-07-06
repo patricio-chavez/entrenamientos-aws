@@ -62,4 +62,11 @@ else
   echo "La política $POLICY_NAME no existe."
 fi
 
+#Eliminar la política para ExternalDNS
+POLICY_ARN=$(aws iam list-policies --query 'Policies[?PolicyName==`AllowExternalDNSUpdates`].Arn' --output text)
+aws iam delete-policy --policy-arn $POLICY_ARN
+
+# Volver al directorio original
+cd $HOME/entrenamientos-aws/devops/scripts
+
 echo "Proceso de limpieza de IAM completado."

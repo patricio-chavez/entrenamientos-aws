@@ -32,8 +32,8 @@ Para permitir que el usuario "cloud_automation" acceda a AWS de forma programát
 Este comando generará un par de claves de acceso compuesto por una Access Key ID y una Secret Access Key. Para comprobar que están resguardadas y con fines didácticos durante la formación, ya que no podrás recuperar la Secret Access Key posteriormente, las puedes imprimir. Normalmente se exportan e ingestan directamente en el repositorio de claves como AWS Secrets Manager o se resguardan en otro lugar seguro.
 
 ```shell
-OUTPUT=$(aws iam create-access-key --user-name cloud_automation --query 'AccessKey.[AccessKeyId,SecretAccessKey]' --output text)
-read -r ACCESS_KEY_ID SECRET_ACCESS_KEY <<< "$OUTPUT"
+SALIDA=$(aws iam create-access-key --user-name cloud_automation --query 'AccessKey.[AccessKeyId,SecretAccessKey]' --output text)
+read -r ACCESS_KEY_ID SECRET_ACCESS_KEY <<< "$SALIDA"
 
 # Imprimo los valores solamente para verificar, en Producción no es recomendable mostrar las claves
 echo "Access Key ID: $ACCESS_KEY_ID"

@@ -47,6 +47,7 @@ Sigue este camino de aprendizaje paso a paso, completa los ejercicios prácticos
   - [Crea una cuenta de servicio para ExternalDNS](route53.md#Crea-una-cuenta-de-servicio-para-ExternalDNS)
   - [Crea un role para ExternalDNS](route53#Crea-un-role-para-ExternalDNS)
   - [Asocia el cluster role de External DNS](route53#Asocia-el-cluster-role-de-External-DNS)
+  - [Lista las zonas hosteadas en Route 53](route53#Lista-las-zonas-hosteadas-en-Route-53)
 
 - [AWS CodeBuild](codebuild.md)
   - Crea tu primer proyecto
