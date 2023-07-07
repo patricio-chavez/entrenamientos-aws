@@ -14,7 +14,7 @@ Antes de comenzar, es importante tener en cuenta que en Kubernetes se siguen pr�
 
 Por el momento, nos centraremos en los objetos y despliegues necesarios para alojar nuestra aplicación estática y servir su contenido a través de Internet.
 
-### Crea un espacio de nombres
+### Define variables
 
 Para comenzar muévete al directorio $HOME e ingresa al directorio mi-repositorio
 
@@ -41,7 +41,17 @@ export DOMINIO=$(aws route53 list-hosted-zones --query 'HostedZones[0]'.Name | c
 export HOSTNAME_APLICACION="$NOMBRE_APLICACION_MANUAL.$DOMINIO"
 ```
 
-Prepara la descripción de un espacio de nombres dedicado para nuestra aplicación estática. Esto nos permitirá aislar y organizar los recursos relacionados con nuestra aplicación.
+### Crea un Namespace
+
+Un espacio de nombres (Namespace) en Kubernetes es un mecanismo utilizado para organizar y separar los recursos en un clúster. Puedes pensar en un namespace como un contenedor virtual que ayuda a mantener los recursos de Kubernetes aislados y separados unos de otros.
+
+Cada clúster de Kubernetes tiene un conjunto predeterminado de namespaces, como "default", "kube-system" y "kube-public". Sin embargo, también puedes crear tus propios namespaces para organizar tus aplicaciones y recursos de acuerdo con tus necesidades.
+
+La creación de namespaces te permite tener múltiples entornos (por ejemplo, desarrollo, prueba, producción) en el mismo clúster sin que se produzcan conflictos entre los recursos. Cada namespace tiene su propio conjunto de recursos, incluidos pods, servicios, volúmenes persistentes, secretos y configuraciones.
+
+Además de proporcionar aislamiento, los namespaces también ayudan a mejorar la legibilidad y la gestión de los recursos en un clúster. Puedes definir políticas de acceso y control de recursos a nivel de namespace, lo que facilita la administración de permisos y la aplicación de políticas de seguridad.
+
+Prepara la descripción de un espacio de nombres dedicado para nuestra aplicación estática.
 
 ```shell
 cat << EOF > namespace-aplicacion-estatica.yaml
@@ -58,7 +68,7 @@ Despliega el espacio de nombres con el siguiente comando.
 kubectl apply -f namespace-aplicacion-estatica.yaml
 ```
 
-Dado que estamos describiendo el estado deseado si vuelves a ejecutar el mismo comando no dará error ni duplicará el espacio de nombres dado que Kubernetes entiende que el estado deseado es el estado actual. Repite el comando anterior.
+Dado que estamos describiendo el estado deseado si vuelves a ejecutar el mismo comando no dará error ni duplicará el espacio de nombres dado que Kubernetes entiende que el estado deseado ya es el estado actual. Verifícalo repitiendo el comando anterior.
 
 ```shell
 kubectl apply -f namespace-aplicacion-estatica.yaml
@@ -66,9 +76,9 @@ kubectl apply -f namespace-aplicacion-estatica.yaml
 
 Deberías recibir un mensaje indicando que no hubo cambios.
 
-### Crea un servicio
+### Crea un Service
 
-Un servicio en Kubernetes es un objeto que se utiliza para exponer una aplicación o conjunto de pods dentro del clúster. Proporciona una forma de acceder a los pods de manera transparente y estable, independientemente de su ubicación o cambios en su ciclo de vida.
+Un servicio (Service) en Kubernetes es un objeto que se utiliza para exponer una aplicación o conjunto de pods dentro del clúster. Proporciona una forma de acceder a los pods de manera transparente y estable, independientemente de su ubicación o cambios en su ciclo de vida.
 
 El servicio se asocia a uno o varios pods a través de selectores de etiquetas (labels). Los pods seleccionados se agrupan lógicamente y el servicio les asigna una dirección IP y un nombre DNS único dentro del clúster. Esto permite que otros componentes del clúster se comuniquen con los pods utilizando el nombre del servicio.
 
@@ -103,7 +113,7 @@ Aplica la configuración ejecutando el siguiente comando:
 kubectl apply -f servicio-aplicacion-estatica.yaml
 ```
 
-### Crea un despliegue
+### Crea un Deployment
 
 Un despliegue (Deployment) en Kubernetes es un objeto que define cómo se ejecutan y se administran los pods en el clúster. Proporciona una forma declarativa de gestionar la creación, actualización y escalado de los pods que forman parte de una aplicación.
 
@@ -187,31 +197,56 @@ metadata:
 data:
   index.js: |-
     const http = require('http');
-    const os = require('os');    
+    const os = require('os');
     const hostname = os.hostname();
     let intervalId;
     const server = http.createServer((req, res) => {
       res.writeHead(200, { 'Content-Type': 'text/html' });
-      res.write('
+      res.write(\`
         <html>
           <head>
-            <title>Mi primera aplicación estática</title>            
+            <title>Slot Machine</title>
+            <style>
+              #slot-machine {
+                width: 200px;
+                margin: auto;
+              }
+              #slot-machine td {
+                width: 50px;
+                height: 50px;
+                text-align: center;
+                font-size: 30px;
+                font-weight: bold;
+                border: 1px solid #ccc;
+                border-collapse: collapse;
+              }
+              #start-btn {
+                display: block;
+                margin: auto;
+                margin-top: 20px;
+                font-size: 20px;
+                font-weight: bold;
+                padding: 10px 20px;
+                border-radius: 5px;
+                border: none;
+                background-color: #007bff;
+                color: #fff;
+                cursor: pointer;
+              }
+            </style>
           </head>
           <body>
-            <h1 style="text-align: center;">Mi primera aplicación estática</h1>                      
-            <footer style="position: fixed; bottom: 10px; left: 0; right: 0;">
-              <div style="text-align: center;">
-                <p style="margin: 0;">Content served by pod: \`\${hostname}\`</p>
-              </div>
-            </footer>
+            <h1>Mi primera aplicación estática en Kubernetes!</h1>
+            <p>Estoy corriendo sobre el POD: \${hostname}</p>
           </body>
         </html>
-      ');
+      \`);    
       res.end();
-      });
-      server.listen(3000, () => {
-        console.log('Server running at http://localhost:3000/');
-      });
+    });
+
+    server.listen(3000, () => {
+      console.log('Server running at http://localhost:3000/');
+    });
 EOF
 ```
 
@@ -221,7 +256,7 @@ Aplica la descripción del ConfigMap
 kubectl apply -f configmap-aplicacion-estatica.yaml
 ```
 
-### Crea un ingreso
+### Crea un Ingress
 
 En Kubernetes, un ingreso (Ingress) es un objeto que actúa como un controlador de tráfico para enrutar las solicitudes de entrada a los servicios adecuados dentro del clúster. Proporciona una capa de entrada para el tráfico externo y permite configurar reglas de enrutamiento basadas en la URL, los encabezados u otros criterios.
 

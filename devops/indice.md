@@ -50,10 +50,11 @@ Sigue este camino de aprendizaje paso a paso, completa los ejercicios prácticos
   - [Lista las zonas hosteadas en Route 53](route53#Lista-las-zonas-hosteadas-en-Route-53)
 
 - [Aplicación contenerizada con despliegue manual](appmanual.md)
-  - [Crea un espacio de nombres](appmanual.md#Crea-un-espacio-de-nombres)
-  - [Crea un servicio](appmanual.md#Crea-un-servicio)
-  - [Crea un despliegue](appmanual.md#Crea-un-despliegue)
-  - [Crea un ingreso](appmanual.md#Crea-un-ingreso)
+  - [Crea un Namespace](appmanual.md#Crea-un-Namespace)
+  - [Crea un Service](appmanual.md#Crea-un-service)
+  - [Crea un Deployment](appmanual.md#Crea-un-Deployment)
+  - [Crea un Ingress](appmanual.md#Crea-un-Ingress)
+  - [Crea un ConfigMap](appmanual.md#Crea-un-ConfigMap)
 
 - [AWS CodeBuild](codebuild.md)
   - Crea tu primer proyecto
