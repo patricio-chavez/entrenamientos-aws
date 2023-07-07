@@ -250,7 +250,7 @@ data:
 EOF
 ```
 
-Aplica la descripción del ConfigMap 
+Aplica la configuración en Kubernetes del ConfigMap descripto en el fichero:
 
 ```shell
 kubectl apply -f configmap-aplicacion-estatica.yaml
