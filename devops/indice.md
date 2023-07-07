@@ -52,9 +52,9 @@ Sigue este camino de aprendizaje paso a paso, completa los ejercicios prácticos
 - [Aplicación contenerizada con despliegue manual](appmanual.md)
   - [Crea un Namespace](appmanual.md#Crea-un-Namespace)
   - [Crea un Service](appmanual.md#Crea-un-service)
+  - [Crea un ConfigMap](appmanual.md#Crea-un-ConfigMap)
   - [Crea un Deployment](appmanual.md#Crea-un-Deployment)
   - [Crea un Ingress](appmanual.md#Crea-un-Ingress)
-  - [Crea un ConfigMap](appmanual.md#Crea-un-ConfigMap)
 
 - [AWS CodeBuild](codebuild.md)
   - Crea tu primer proyecto

@@ -19,7 +19,7 @@ Por el momento, nos centraremos en los objetos y despliegues necesarios para alo
 Para comenzar muévete al directorio $HOME e ingresa al directorio mi-repositorio
 
 ```shell
-mkdir codigo && cd codigo
+cd $HOME/mi-repositorio && mkdir codigo && cd codigo
 ```
 Importante: Si no lo encuentras puedes volver a clonarlo copiando el enlace de SSH provisto por Code Commit.
 
@@ -112,6 +112,58 @@ Aplica la configuración ejecutando el siguiente comando:
 ```shell
 kubectl apply -f servicio-aplicacion-estatica.yaml
 ```
+### Crea un ConfigMap
+
+Un ConfigMap en Kubernetes es un objeto que se utiliza para almacenar y gestionar la configuración de la aplicación. Permite separar la configuración de la aplicación del código fuente, lo que facilita la administración y la personalización de la configuración sin necesidad de volver a generar ni reconstruir la imagen del contenedor.
+
+El ConfigMap almacena datos clave-valor y se puede utilizar para configurar variables de entorno, argumentos de línea de comandos o archivos de configuración dentro de los pods de la aplicación.
+
+Tener desacoplada la configuración permite mayor reutilización, por ejemplo, cuando se usa la misma imagen para distintos ambientes que por lo general requieren distintas configuraciones.
+
+En nuestro caso utilizaremos el ConfigMap para montar un volumen en el contenedor y allí dejaremos el código de nuestra aplicación estática, dado que es un nodejs, el ficher que montaremos será el index.js.
+
+Comienza con un fichero que no tenga demasiada complejidad y luego si lo deseas puedes ir modificándolo.
+
+```shell
+cat << EOF > configmap-aplicacion-estatica.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: $CONFIGMAP_APLICACION_MANUAL
+  namespace: $ESPACIO_NOMBRES_APLICACION_MANUAL
+data:
+  index.js: |-
+    const http = require('http');
+    const os = require('os');
+    const hostname = os.hostname();
+    let intervalId;
+    const server = http.createServer((req, res) => {
+      res.writeHead(200, { 'Content-Type': 'text/html' });
+      res.write(\`
+        <html>
+          <head>
+            <title>Despliegue manual</title>            
+          </head>
+          <body>
+            <h1>Mi primera aplicación estática en Kubernetes!</h1>
+            <p>Estoy corriendo sobre el POD: \${hostname}</p>
+          </body>
+        </html>
+      \`);    
+      res.end();
+    });
+
+    server.listen(3000, () => {
+      console.log('Server running at http://localhost:3000/');
+    });
+EOF
+```
+
+Aplica la configuración en Kubernetes del ConfigMap descripto en el fichero:
+
+```shell
+kubectl apply -f configmap-aplicacion-estatica.yaml
+```
 
 ### Crea un Deployment
 
@@ -173,87 +225,6 @@ Como siempre, ahora ejecuta el comando para aplicar los cambios.
 
 ```shell
 kubectl apply -f despliegue-aplicacion-estatica.yaml
-```
-
-### Crea un ConfigMap
-
-Un ConfigMap en Kubernetes es un objeto que se utiliza para almacenar y gestionar la configuración de la aplicación. Permite separar la configuración de la aplicación del código fuente, lo que facilita la administración y la personalización de la configuración sin necesidad de volver a generar ni reconstruir la imagen del contenedor.
-
-El ConfigMap almacena datos clave-valor y se puede utilizar para configurar variables de entorno, argumentos de línea de comandos o archivos de configuración dentro de los pods de la aplicación.
-
-Tener desacoplada la configuración permite mayor reutilización, por ejemplo, cuando se usa la misma imagen para distintos ambientes que por lo general requieren distintas configuraciones.
-
-En nuestro caso utilizaremos el ConfigMap para montar un volumen en el contenedor y allí dejaremos el código de nuestra aplicación estática, dado que es un nodejs, el ficher que montaremos será el index.js.
-
-Comienza con un fichero que no tenga demasiada complejidad y luego si lo deseas puedes ir modificándolo.
-
-```shell
-cat << EOF > configmap-aplicacion-estatica.yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: $CONFIGMAP_APLICACION_MANUAL
-  namespace: $ESPACIO_NOMBRES_APLICACION_MANUAL
-data:
-  index.js: |-
-    const http = require('http');
-    const os = require('os');
-    const hostname = os.hostname();
-    let intervalId;
-    const server = http.createServer((req, res) => {
-      res.writeHead(200, { 'Content-Type': 'text/html' });
-      res.write(\`
-        <html>
-          <head>
-            <title>Slot Machine</title>
-            <style>
-              #slot-machine {
-                width: 200px;
-                margin: auto;
-              }
-              #slot-machine td {
-                width: 50px;
-                height: 50px;
-                text-align: center;
-                font-size: 30px;
-                font-weight: bold;
-                border: 1px solid #ccc;
-                border-collapse: collapse;
-              }
-              #start-btn {
-                display: block;
-                margin: auto;
-                margin-top: 20px;
-                font-size: 20px;
-                font-weight: bold;
-                padding: 10px 20px;
-                border-radius: 5px;
-                border: none;
-                background-color: #007bff;
-                color: #fff;
-                cursor: pointer;
-              }
-            </style>
-          </head>
-          <body>
-            <h1>Mi primera aplicación estática en Kubernetes!</h1>
-            <p>Estoy corriendo sobre el POD: \${hostname}</p>
-          </body>
-        </html>
-      \`);    
-      res.end();
-    });
-
-    server.listen(3000, () => {
-      console.log('Server running at http://localhost:3000/');
-    });
-EOF
-```
-
-Aplica la configuración en Kubernetes del ConfigMap descripto en el fichero:
-
-```shell
-kubectl apply -f configmap-aplicacion-estatica.yaml
 ```
 
 ### Crea un Ingress
