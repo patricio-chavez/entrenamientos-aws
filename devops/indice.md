@@ -61,7 +61,7 @@ Sigue este camino de aprendizaje paso a paso, completa los ejercicios prácticos
   - Verifica el ciclo de vida
   - Revisa los logs
 
-- AWS CodePipeline
+- [AWS CodePipeline](codepipeline.md)
   - Crea tu primer primer pipeline
   - Verifica el estado
   - Resguarda la configuración
